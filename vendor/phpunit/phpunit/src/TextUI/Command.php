@@ -192,10 +192,14 @@ class PHPUnit_TextUI_Command
 
         $return = PHPUnit_TextUI_TestRunner::FAILURE_EXIT;
 
-        if (isset($result) && $result->wasSuccessful()) {
+        if (isset($result) && $result->wasSuccessful(false)) {
             $return = PHPUnit_TextUI_TestRunner::SUCCESS_EXIT;
         } elseif (!isset($result) || $result->errorCount() > 0) {
             $return = PHPUnit_TextUI_TestRunner::EXCEPTION_EXIT;
+        }
+
+        if ($exit) {
+            exit($return);
         }
 
         return $return;
@@ -640,6 +644,7 @@ class PHPUnit_TextUI_Command
                 default:
                     $optionName = str_replace('--', '', $option[0]);
 
+                    $handler = null;
                     if (isset($this->longOptions[$optionName])) {
                         $handler = $this->longOptions[$optionName];
                     } elseif (isset($this->longOptions[$optionName . '='])) {
@@ -860,7 +865,7 @@ class PHPUnit_TextUI_Command
      * @param string $printerClass
      * @param string $printerFile
      *
-     * @return PHPUnit_Util_Printer
+     * @return PHPUnit_Util_Printer|string
      */
     protected function handlePrinter($printerClass, $printerFile = '')
     {
@@ -1150,6 +1155,7 @@ EOT;
     }
 
     /**
+     * @param string $message
      */
     private function showError($message)
     {

@@ -24,6 +24,7 @@ $app = new Laravel\Lumen\Application(
 );
 
 // uncommented by SRM
+$app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
 $app->withFacades();
 $app->withEloquent();
 

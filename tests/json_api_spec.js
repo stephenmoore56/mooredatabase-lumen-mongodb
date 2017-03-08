@@ -1,7 +1,7 @@
 'use strict';
 
 let frisby = require('frisby');
-let baseURL = 'http://lumen.local';
+let baseURL = 'http://mongodb.local';
 // let baseURL = 'http://lumen.moore-database.com';
 
 frisby.create('Clear cache')
