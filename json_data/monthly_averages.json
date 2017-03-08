@@ -1,0 +1,14 @@
+[
+{"month_number":1,"month_name":"January","month_abbrev":"Jan","month_letter":"J","avg_low_temp":4,"avg_high_temp":22,"record_low_temp":-41,"record_high_temp":59,"avg_precipitation":"1.04","avg_snowfall":"13.50"},
+{"month_number":2,"month_name":"February","month_abbrev":"Feb","month_letter":"F","avg_low_temp":12,"avg_high_temp":29,"record_low_temp":-33,"record_high_temp":64,"avg_precipitation":"0.79","avg_snowfall":"8.20"},
+{"month_number":3,"month_name":"March","month_abbrev":"Mar","month_letter":"M","avg_low_temp":23,"avg_high_temp":41,"record_low_temp":-32,"record_high_temp":83,"avg_precipitation":"1.86","avg_snowfall":"10.40"},
+{"month_number":4,"month_name":"April","month_abbrev":"Apr","month_letter":"A","avg_low_temp":36,"avg_high_temp":57,"record_low_temp":2,"record_high_temp":95,"avg_precipitation":"2.31","avg_snowfall":"3.10"},
+{"month_number":5,"month_name":"May","month_abbrev":"May","month_letter":"M","avg_low_temp":48,"avg_high_temp":70,"record_low_temp":18,"record_high_temp":106,"avg_precipitation":"3.24","avg_snowfall":"0.10"},
+{"month_number":6,"month_name":"June","month_abbrev":"Jun","month_letter":"J","avg_low_temp":58,"avg_high_temp":79,"record_low_temp":34,"record_high_temp":104,"avg_precipitation":"4.34","avg_snowfall":"0.00"},
+{"month_number":7,"month_name":"July","month_abbrev":"Jul","month_letter":"J","avg_low_temp":63,"avg_high_temp":83,"record_low_temp":43,"record_high_temp":108,"avg_precipitation":"4.04","avg_snowfall":"0.00"},
+{"month_number":8,"month_name":"August","month_abbrev":"Aug","month_letter":"A","avg_low_temp":61,"avg_high_temp":80,"record_low_temp":39,"record_high_temp":103,"avg_precipitation":"4.05","avg_snowfall":"0.00"},
+{"month_number":9,"month_name":"September","month_abbrev":"Sep","month_letter":"S","avg_low_temp":51,"avg_high_temp":71,"record_low_temp":26,"record_high_temp":104,"avg_precipitation":"2.69","avg_snowfall":"0.00"},
+{"month_number":10,"month_name":"October","month_abbrev":"Oct","month_letter":"O","avg_low_temp":39,"avg_high_temp":58,"record_low_temp":10,"record_high_temp":90,"avg_precipitation":"2.11","avg_snowfall":"0.60"},
+{"month_number":11,"month_name":"November","month_abbrev":"Nov","month_letter":"N","avg_low_temp":25,"avg_high_temp":40,"record_low_temp":-25,"record_high_temp":77,"avg_precipitation":"1.94","avg_snowfall":"10.00"},
+{"month_number":12,"month_name":"December","month_abbrev":"Dec","month_letter":"D","avg_low_temp":11,"avg_high_temp":26,"record_low_temp":-39,"record_high_temp":68,"avg_precipitation":"1.00","avg_snowfall":"10.00"}
+]
