@@ -1,0 +1,17 @@
+{
+  "name": "mooredatabase-lumen",
+  "version": "1.0.0",
+  "description": "Lumen project for reporting API",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "frisby": "^0.8.5"
+  }
+}
