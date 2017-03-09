@@ -39,6 +39,15 @@ class ReportsApiController extends Controller {
 		}
 	}
 
+	public static function mongoTest() {
+		try {
+			$results = Mapper::mongoTest();
+			return self::formatNormalResponse(Response::HTTP_OK, $results);
+		} catch (Exception $e) {
+			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
+		}
+	}
+
 	/**
 	 * List species and trips by month
 	 * @access  public
@@ -52,6 +61,7 @@ class ReportsApiController extends Controller {
 			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
 		}
 	}
+
 
 	/**
 	 * List species and trips by year

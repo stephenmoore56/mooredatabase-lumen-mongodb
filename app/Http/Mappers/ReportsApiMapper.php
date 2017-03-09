@@ -29,6 +29,10 @@ class ReportsApiMapper {
 		Cache::flush();
 	}
 
+	public static function mongoTest(): array {
+		return DB::connection('mongodb')->collection('location')->get();
+	}
+
 	/**
 	 * List species and trips by month
 	 * @access  public

@@ -10,6 +10,7 @@
 |
  */
 $app->get('/api/reports/clearCache', 'ReportsApiController@clearCache');
+$app->get('/api/reports/mongoTest', 'ReportsApiController@mongoTest');
 $app->get('/api/reports/speciesByMonth', 'ReportsApiController@speciesByMonth');
 $app->get('/api/reports/speciesByYear', 'ReportsApiController@speciesByYear');
 $app->get('/api/reports/speciesForMonth/{monthNumber:[1-9]\d*}', 'ReportsApiController@speciesForMonth');
