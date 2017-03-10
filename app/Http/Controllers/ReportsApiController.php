@@ -144,25 +144,7 @@ class ReportsApiController extends Controller {
 	public static function monthsForSpecies(int $speciesId) {
 		try {
 			$results = Mapper::monthsForSpecies($speciesId);
-			if ($results[0]->common_name == '') {
-				return self::formatErrorResponse(Response::HTTP_NOT_FOUND, self::HTTP_NOT_FOUND_MESSAGE);
-			}
-			return self::formatNormalResponse(Response::HTTP_OK, $results);
-		} catch (Exception $e) {
-			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
-		}
-	}
-
-	/**
-	 * List months for species
-	 * @access  public
-	 * @param int $speciesId
-	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
-	 */
-	public static function sightingsByMonth(int $speciesId) {
-		try {
-			$results = Mapper::sightingsByMonth($speciesId);
-			if (!count($results)) {
+			if ($results == []) {
 				return self::formatErrorResponse(Response::HTTP_NOT_FOUND, self::HTTP_NOT_FOUND_MESSAGE);
 			}
 			return self::formatNormalResponse(Response::HTTP_OK, $results);
@@ -325,34 +307,6 @@ class ReportsApiController extends Controller {
 	public static function speciesByCounty() {
 		try {
 			$results = Mapper::speciesByCounty();
-			return self::formatNormalResponse(Response::HTTP_OK, $results);
-		} catch (Exception $e) {
-			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
-		}
-	}
-
-	/**
-	 * List species by month for ducks and warblers
-	 * @access  public
-	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
-	 */
-	public static function twoSpeciesByMonth() {
-		try {
-			$results = Mapper::twoSpeciesByMonth();
-			return self::formatNormalResponse(Response::HTTP_OK, $results);
-		} catch (Exception $e) {
-			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
-		}
-	}
-
-	/**
-	 * Monthly average and record temperatures
-	 * @access  public
-	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
-	 */
-	public static function monthlyTemps() {
-		try {
-			$results = Mapper::monthlyTemps();
 			return self::formatNormalResponse(Response::HTTP_OK, $results);
 		} catch (Exception $e) {
 			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
