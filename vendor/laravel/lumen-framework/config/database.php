@@ -95,13 +95,13 @@ return [
 
 		'mongodb' => [
 			'driver'   => 'mongodb',
-			'host'     => env('MONGO_HOST', 'localhost'),
+			'host'     => env('MONGO_HOST','localhost'),
 			'port'     => env('MONGO_PORT', 27017),
-			'database' => env('MONGO_DATABASE'),
+			'database' => env('MONGO_DATABASE',''),
 			'username' => env('MONGO_USERNAME',''),
 			'password' => env('MONGO_PASSWORD',''),
 			'options'  => [
-				'database' => 'admin' // sets the authentication database required by mongo 3
+				'database' => 'birding' // sets the authentication database required by mongo 3
 			]
 		],
 

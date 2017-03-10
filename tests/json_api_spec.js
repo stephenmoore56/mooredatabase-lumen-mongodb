@@ -97,7 +97,6 @@ frisby.create('Species For Month JSON endpoint')
         scientific_name: String,
         family: String,
         subfamily: String,
-        order_species_count: Number,
         sightings: Number,
         last_seen: String,
         monthName: String
@@ -130,7 +129,6 @@ frisby.create('Species For Year JSON endpoint')
         scientific_name: String,
         family: String,
         subfamily: String,
-        order_species_count: Number,
         sightings: Number,
         first_seen: String,
         last_seen: String
@@ -163,7 +161,6 @@ frisby.create('Species For Order JSON endpoint')
         scientific_name: String,
         family: String,
         subfamily: String,
-        order_species_count: Number,
         sightings: Number,
         last_seen: String
     })
@@ -231,10 +228,8 @@ frisby.create('All Species JSON endpoint')
         scientific_name: String,
         family: String,
         subfamily: String,
-        order_species_count: Number,
         sightings: Number,
-        last_seen: String,
-        displayGroupHeader: String
+        last_seen: String
     })
     .toss();
 

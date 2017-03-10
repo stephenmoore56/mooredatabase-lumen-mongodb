@@ -6,6 +6,10 @@ namespace App\Http\Mappers;
 use \Illuminate\Support\Facades\Cache;
 use \Illuminate\Support\Facades\DB;
 
+/** models; for future reference */
+use App\Bird as Bird;
+use App\Location as Location;
+
 /**
  * Methods that call stored procedures and return arrays to controller methods
  *
@@ -29,8 +33,35 @@ class ReportsApiMapper {
 		Cache::flush();
 	}
 
-	public static function mongoTest(): array {
-		return DB::connection('mongodb')->collection('location')->get();
+	/**
+	 * List species and trips by year
+	 * @access  public
+	 * @return array
+	 */
+	public static function speciesByYear(): array {
+		return
+			DB::connection('mongodb')
+				->collection('sighting')
+				->raw(function ($collection) {
+					return $collection->aggregate(array(
+						array(
+							'$group' => array(
+								'_id'     => '$yearNumber',
+								'species' => array('$addToSet' => '$aou_list_id'),
+								'trips'   => array('$addToSet' => '$trip_id'),
+							),
+						),
+						array(
+							'$project' => array(
+								"_id"          => 0,
+								'yearNumber'   => '$_id',
+								'speciesCount' => array('$size' => '$species'),
+								'tripCount'    => array('$size' => '$trips'),
+							),
+						),
+					));
+				})
+				->toArray();
 	}
 
 	/**
@@ -39,16 +70,33 @@ class ReportsApiMapper {
 	 * @return array
 	 */
 	public static function speciesByMonth(): array {
-		return self::executeProcedure(__METHOD__, 'CALL proc_listSpeciesByMonth();');
-	}
-
-	/**
-	 * List species and trips by year
-	 * @access  public
-	 * @return array
-	 */
-	public static function speciesByYear(): array {
-		return self::executeProcedure(__METHOD__, 'CALL proc_listSpeciesByYear();');
+		return
+			DB::connection('mongodb')
+				->collection('sighting')
+				->raw(function ($collection) {
+					return $collection->aggregate(array(
+						array(
+							'$group' => array(
+								'_id'         => '$monthNumber',
+								'monthName'   => array('$first' => '$monthName'),
+								'monthLetter' => array('$first' => '$monthLetter'),
+								'species'     => array('$addToSet' => '$aou_list_id'),
+								'trips'       => array('$addToSet' => '$trip_id'),
+							),
+						),
+						array(
+							'$project' => array(
+								"_id"          => 0,
+								'monthNumber'  => '$_id',
+								'monthName'    => '$monthName',
+								'monthLetter'  => '$monthLetter',
+								'speciesCount' => array('$size' => '$species'),
+								'tripCount'    => array('$size' => '$trips'),
+							),
+						),
+					));
+				})
+				->toArray();
 	}
 
 	/**
@@ -58,7 +106,49 @@ class ReportsApiMapper {
 	 * @return array
 	 */
 	public static function speciesForMonth(int $monthNumber): array {
-		return self::executeProcedure(__METHOD__, 'CALL proc_listSpeciesForMonth(?);', [$monthNumber]);
+		return DB::connection('mongodb')
+			->collection('sighting')
+			->raw(function ($collection) use ($monthNumber) {
+				return $collection->aggregate(array(
+					array(
+						'$match' => array(
+							'monthNumber' => array('$eq' => $monthNumber),
+						),
+					),
+					array(
+						'$group' => array(
+							'_id'       => '$aou_list_id',
+							'monthName' => array('$first' => '$monthName'),
+							'last_seen' => array('$max' => '$sighting_date'),
+							'sightings' => array('$sum' => 1),
+						),
+					),
+					array(
+						'$lookup' => array(
+							'from'         => "bird",
+							'localField'   => "_id",
+							'foreignField' => "aou_list_id",
+							'as'           => "bird",
+						),
+					),
+					array('$unwind' => '$bird'),
+					array('$project' => array(
+						"_id"             => 0,
+						'id'              => '$_id',
+						'sightings'       => '$sightings',
+						'order_name'      => '$bird.order_name',
+						'order_notes'     => '$bird.order_notes',
+						'common_name'     => '$bird.common_name',
+						'scientific_name' => '$bird.scientific_name',
+						'family'          => '$bird.family',
+						'subfamily'       => '$bird.subfamily',
+						'last_seen'       => '$last_seen',
+						'monthName'       => '$monthName',
+					)),
+					array('$sort' => array('common_name' => 1)),
+				));
+			})
+			->toArray();
 	}
 
 	/**
@@ -68,7 +158,51 @@ class ReportsApiMapper {
 	 * @return array
 	 */
 	public static function speciesForYear(int $year): array {
-		return self::executeProcedure(__METHOD__, 'CALL proc_listSpeciesForYear(?);', [$year]);
+		return DB::connection('mongodb')
+			->collection('sighting')
+			->raw(function ($collection) use ($year) {
+				return $collection->aggregate(array(
+					array(
+						'$match' => array(
+							'yearNumber' => array('$eq' => $year),
+						),
+					),
+					array(
+						'$group' => array(
+							'_id'        => '$aou_list_id',
+							'monthName'  => array('$first' => '$monthName'),
+							'first_seen' => array('$min' => '$sighting_date'),
+							'last_seen'  => array('$max' => '$sighting_date'),
+							'sightings'  => array('$sum' => 1),
+						),
+					),
+					array(
+						'$lookup' => array(
+							'from'         => "bird",
+							'localField'   => "_id",
+							'foreignField' => "aou_list_id",
+							'as'           => "bird",
+						),
+					),
+					array('$unwind' => '$bird'),
+					array('$project' => array(
+						"_id"             => 0,
+						'id'              => '$_id',
+						'sightings'       => '$sightings',
+						'order_name'      => '$bird.order_name',
+						'order_notes'     => '$bird.order_notes',
+						'common_name'     => '$bird.common_name',
+						'scientific_name' => '$bird.scientific_name',
+						'family'          => '$bird.family',
+						'subfamily'       => '$bird.subfamily',
+						'first_seen'      => '$first_seen',
+						'last_seen'       => '$last_seen',
+						'monthName'       => '$monthName',
+					)),
+					array('$sort' => array('common_name' => 1)),
+				));
+			})
+			->toArray();
 	}
 
 	/**
@@ -117,7 +251,49 @@ class ReportsApiMapper {
 	 * @return array
 	 */
 	public static function speciesForOrder(int $orderId): array {
-		return self::executeProcedure(__METHOD__, 'CALL proc_listSpeciesForOrder(?);', [$orderId]);
+		return DB::connection('mongodb')
+			->collection('sighting')
+			->raw(function ($collection) use ($orderId) {
+				return $collection->aggregate(array(
+					array(
+						'$match' => array(
+							'order_id' => array('$eq' => $orderId),
+						),
+					),
+					array(
+						'$group' => array(
+							'_id'       => '$aou_list_id',
+							'monthName' => array('$first' => '$monthName'),
+							'last_seen' => array('$max' => '$sighting_date'),
+							'sightings' => array('$sum' => 1),
+						),
+					),
+					array(
+						'$lookup' => array(
+							'from'         => "bird",
+							'localField'   => "_id",
+							'foreignField' => "aou_list_id",
+							'as'           => "bird",
+						),
+					),
+					array('$unwind' => '$bird'),
+					array('$project' => array(
+						"_id"             => 0,
+						'id'              => '$_id',
+						'sightings'       => '$sightings',
+						'order_name'      => '$bird.order_name',
+						'order_notes'     => '$bird.order_notes',
+						'common_name'     => '$bird.common_name',
+						'scientific_name' => '$bird.scientific_name',
+						'family'          => '$bird.family',
+						'subfamily'       => '$bird.subfamily',
+						'last_seen'       => '$last_seen',
+						'monthName'       => '$monthName',
+					)),
+					array('$sort' => array('common_name' => 1)),
+				));
+			})
+			->toArray();
 	}
 
 	/**
@@ -126,7 +302,44 @@ class ReportsApiMapper {
 	 * @return array
 	 */
 	public static function speciesAll(): array {
-		return self::executeProcedure(__METHOD__, 'CALL proc_listSpeciesAll();');
+		return DB::connection('mongodb')
+			->collection('sighting')
+			->raw(function ($collection) {
+				return $collection->aggregate(array(
+					array(
+						'$group' => array(
+							'_id'       => '$aou_list_id',
+							'monthName' => array('$first' => '$monthName'),
+							'last_seen' => array('$max' => '$sighting_date'),
+							'sightings' => array('$sum' => 1),
+						),
+					),
+					array(
+						'$lookup' => array(
+							'from'         => "bird",
+							'localField'   => "_id",
+							'foreignField' => "aou_list_id",
+							'as'           => "bird",
+						),
+					),
+					array('$unwind' => '$bird'),
+					array('$project' => array(
+						"_id"             => 0,
+						'id'              => '$_id',
+						'sightings'       => '$sightings',
+						'order_name'      => '$bird.order_name',
+						'order_notes'     => '$bird.order_notes',
+						'common_name'     => '$bird.common_name',
+						'scientific_name' => '$bird.scientific_name',
+						'family'          => '$bird.family',
+						'subfamily'       => '$bird.subfamily',
+						'last_seen'       => '$last_seen',
+						'monthName'       => '$monthName',
+					)),
+					array('$sort' => array('common_name' => 1)),
+				));
+			})
+			->toArray();
 	}
 
 	/**
@@ -178,7 +391,7 @@ class ReportsApiMapper {
 	 * search complete AOU list
 	 * @access  public
 	 * @param string $searchString
-	 * @param int $orderId
+	 * @param int    $orderId
 	 * @return array
 	 */
 	public static function searchAll(string $searchString, int $orderId): array {
@@ -229,7 +442,49 @@ class ReportsApiMapper {
 	 * @return array
 	 */
 	public static function speciesForLocation(int $locationId): array {
-		return self::executeProcedure(__METHOD__, 'CALL proc_listSightingsForLocation2(?);', [$locationId]);
+		return DB::connection('mongodb')
+			->collection('sighting')
+			->raw(function ($collection) use ($locationId) {
+				return $collection->aggregate(array(
+					array(
+						'$match' => array(
+							'location_id' => array('$eq' => $locationId),
+						),
+					),
+					array(
+						'$group' => array(
+							'_id'       => '$aou_list_id',
+							'monthName' => array('$first' => '$monthName'),
+							'last_seen' => array('$max' => '$sighting_date'),
+							'sightings' => array('$sum' => 1),
+						),
+					),
+					array(
+						'$lookup' => array(
+							'from'         => "bird",
+							'localField'   => "_id",
+							'foreignField' => "aou_list_id",
+							'as'           => "bird",
+						),
+					),
+					array('$unwind' => '$bird'),
+					array('$project' => array(
+						"_id"             => 0,
+						'id'              => '$_id',
+						'sightings'       => '$sightings',
+						'order_name'      => '$bird.order_name',
+						'order_notes'     => '$bird.order_notes',
+						'common_name'     => '$bird.common_name',
+						'scientific_name' => '$bird.scientific_name',
+						'family'          => '$bird.family',
+						'subfamily'       => '$bird.subfamily',
+						'last_seen'       => '$last_seen',
+						'monthName'       => '$monthName',
+					)),
+					array('$sort' => array('common_name' => 1)),
+				));
+			})
+			->toArray();
 	}
 
 	/**
@@ -245,7 +500,7 @@ class ReportsApiMapper {
 	/**
 	 * @param string $method
 	 * @param string $callStatement
-	 * @param array $params
+	 * @param array  $params
 	 * @return array
 	 */
 	private static function executeProcedure(string $method, string $callStatement, array $params = []): array {
