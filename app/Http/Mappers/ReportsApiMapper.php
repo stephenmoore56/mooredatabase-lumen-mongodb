@@ -72,19 +72,26 @@ class ReportsApiMapper {
 					return $collection->aggregate(array(
 						array(
 							'$group' => array(
-								'_id'         => '$monthNumber',
-								'monthName'   => array('$first' => '$monthName'),
-								'monthLetter' => array('$first' => '$monthLetter'),
-								'species'     => array('$addToSet' => '$aou_list_id'),
-								'trips'       => array('$addToSet' => '$trip_id'),
+								'_id'     => '$monthNumber',
+								'species' => array('$addToSet' => '$aou_list_id'),
+								'trips'   => array('$addToSet' => '$trip_id'),
 							),
 						),
+						array(
+							'$lookup' => array(
+								'from'         => "month",
+								'localField'   => "_id",
+								'foreignField' => "monthNumber",
+								'as'           => "month",
+							),
+						),
+						array('$unwind' => '$month'),
 						array(
 							'$project' => array(
 								"_id"          => 0,
 								'monthNumber'  => '$_id',
-								'monthName'    => '$monthName',
-								'monthLetter'  => '$monthLetter',
+								'monthName'    => '$month.monthName',
+								'monthLetter'  => '$month.monthLetter',
 								'speciesCount' => array('$size' => '$species'),
 								'tripCount'    => array('$size' => '$trips'),
 							),
@@ -113,12 +120,21 @@ class ReportsApiMapper {
 						),
 						array(
 							'$group' => array(
-								'_id'       => '$aou_list_id',
-								'monthName' => array('$first' => '$monthName'),
-								'last_seen' => array('$max' => '$sighting_date'),
-								'sightings' => array('$sum' => 1),
+								'_id'         => '$aou_list_id',
+								'monthNumber' => array('$first' => '$monthNumber'),
+								'last_seen'   => array('$max' => '$sighting_date'),
+								'sightings'   => array('$sum' => 1),
 							),
 						),
+						array(
+							'$lookup' => array(
+								'from'         => "month",
+								'localField'   => "monthNumber",
+								'foreignField' => "monthNumber",
+								'as'           => "month",
+							),
+						),
+						array('$unwind' => '$month'),
 						array(
 							'$lookup' => array(
 								'from'         => "bird",
@@ -139,7 +155,7 @@ class ReportsApiMapper {
 							'family'          => '$bird.family',
 							'subfamily'       => '$bird.subfamily',
 							'last_seen'       => '$last_seen',
-							'monthName'       => '$monthName',
+							'monthName'       => '$month.monthName',
 						)),
 						array('$sort' => array('common_name' => 1)),
 					));
@@ -166,7 +182,6 @@ class ReportsApiMapper {
 						array(
 							'$group' => array(
 								'_id'        => '$aou_list_id',
-								'monthName'  => array('$first' => '$monthName'),
 								'first_seen' => array('$min' => '$sighting_date'),
 								'last_seen'  => array('$max' => '$sighting_date'),
 								'sightings'  => array('$sum' => 1),
@@ -193,7 +208,6 @@ class ReportsApiMapper {
 							'subfamily'       => '$bird.subfamily',
 							'first_seen'      => '$first_seen',
 							'last_seen'       => '$last_seen',
-							'monthName'       => '$monthName',
 						)),
 						array('$sort' => array('common_name' => 1)),
 					));
@@ -250,7 +264,6 @@ class ReportsApiMapper {
 							'last_seen'        => '$last_seen',
 							'earliestSighting' => '$earliestSighting',
 							'latestSighting'   => '$latestSighting',
-							'monthName'        => '$monthName',
 						)),
 					));
 				})
@@ -277,11 +290,18 @@ class ReportsApiMapper {
 							'$group' => array(
 								'_id'           => '$monthNumber',
 								'aou_list_id'   => array('$first' => '$aou_list_id'),
-								'monthName'     => array('$first' => '$monthName'),
-								'monthLetter'   => array('$first' => '$monthLetter'),
 								'sightingCount' => array('$sum' => 1),
 							),
 						),
+						array(
+							'$lookup' => array(
+								'from'         => "month",
+								'localField'   => "_id",
+								'foreignField' => "monthNumber",
+								'as'           => "month",
+							),
+						),
+						array('$unwind' => '$month'),
 						array(
 							'$lookup' => array(
 								'from'         => "bird",
@@ -296,7 +316,7 @@ class ReportsApiMapper {
 								"_id"           => 0,
 								'common_name'   => '$bird.common_name',
 								'monthNumber'   => '$_id',
-								'monthName'     => '$monthName',
+								'monthName'     => '$month.monthName',
 								'sightingCount' => '$sightingCount',
 							),
 						),
@@ -373,7 +393,6 @@ class ReportsApiMapper {
 						array(
 							'$group' => array(
 								'_id'       => '$aou_list_id',
-								'monthName' => array('$first' => '$monthName'),
 								'last_seen' => array('$max' => '$sighting_date'),
 								'sightings' => array('$sum' => 1),
 							),
@@ -398,7 +417,6 @@ class ReportsApiMapper {
 							'family'          => '$bird.family',
 							'subfamily'       => '$bird.subfamily',
 							'last_seen'       => '$last_seen',
-							'monthName'       => '$monthName',
 						)),
 						array('$sort' => array('common_name' => 1)),
 					));
@@ -419,7 +437,6 @@ class ReportsApiMapper {
 						array(
 							'$group' => array(
 								'_id'       => '$aou_list_id',
-								'monthName' => array('$first' => '$monthName'),
 								'last_seen' => array('$max' => '$sighting_date'),
 								'sightings' => array('$sum' => 1),
 							),
@@ -445,7 +462,6 @@ class ReportsApiMapper {
 							'family'          => '$bird.family',
 							'subfamily'       => '$bird.subfamily',
 							'last_seen'       => '$last_seen',
-							'monthName'       => '$monthName',
 						)),
 						array('$sort' => array('common_name' => 1)),
 					));
@@ -709,7 +725,6 @@ class ReportsApiMapper {
 						array(
 							'$group' => array(
 								'_id'       => '$aou_list_id',
-								'monthName' => array('$first' => '$monthName'),
 								'last_seen' => array('$max' => '$sighting_date'),
 								'sightings' => array('$sum' => 1),
 							),
@@ -734,7 +749,6 @@ class ReportsApiMapper {
 							'family'          => '$bird.family',
 							'subfamily'       => '$bird.subfamily',
 							'last_seen'       => '$last_seen',
-							'monthName'       => '$monthName',
 						)),
 						array('$sort' => array('common_name' => 1)),
 					));
