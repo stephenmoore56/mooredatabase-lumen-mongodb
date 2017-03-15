@@ -223,12 +223,36 @@ class ReportsApiMapper {
 	 */
 	public static function speciesDetail(int $speciesId): array {
 		return
-			DB::collection('sighting')
+			DB::collection('bird')
 				->raw(function ($collection) use ($speciesId) {
 					return $collection->aggregate(array(
 						array(
 							'$match' => array(
 								'aou_list_id' => array('$eq' => $speciesId),
+							),
+						),
+						array('$project' => array(
+							'aou_list_id' => '$aou_list_id',
+						)),
+						array(
+							'$lookup' => array(
+								'from'         => "sighting",
+								'localField'   => "aou_list_id",
+								'foreignField' => "aou_list_id",
+								'as'           => "sighting",
+							),
+						),
+						array(
+							'$unwind' => array(
+								'path'                       => '$sighting',
+								'preserveNullAndEmptyArrays' => true,
+							),
+						),
+						array(
+							'$project' => array(
+								'aou_list_id'   => '$aou_list_id',
+								'sighting_date' => '$sighting.sighting_date',
+								'trip_id'       => '$sighting.trip_id',
 							),
 						),
 						array(
@@ -238,7 +262,7 @@ class ReportsApiMapper {
 								'latestSighting'   => array('$max' => array('$substr' => ['$sighting_date', 5, 5])),
 								'first_seen'       => array('$min' => '$sighting_date'),
 								'last_seen'        => array('$max' => '$sighting_date'),
-								'sightings'        => array('$sum' => 1),
+								'trips'            => array('$addToSet' => '$trip_id'),
 							),
 						),
 						array(
@@ -253,7 +277,7 @@ class ReportsApiMapper {
 						array('$project' => array(
 							"_id"              => 0,
 							'id'               => '$_id',
-							'sightings'        => '$sightings',
+							'sightings'        => array('$size' => '$trips'),
 							'order_name'       => '$bird.order_name',
 							'order_notes'      => '$bird.order_notes',
 							'common_name'      => '$bird.common_name',
@@ -586,8 +610,8 @@ class ReportsApiMapper {
 	 */
 	public static function searchAll(string $searchString, int $orderId): array {
 
-		// add following so match filter is never empty;
-		// criteria should always test true
+		// add following default filter so match filter is never empty;
+		// this criteria should always test true
 		$searchString = trim(urldecode($searchString));
 		$stringMatch = array(
 			array(
@@ -595,24 +619,16 @@ class ReportsApiMapper {
 			),
 		);
 		if (trim($searchString) != '') {
+			$searchCriteria = array('$regex' => $searchString, '$options' => 'si');
 			$stringMatch = array(
-				array(
-					'common_name' => array('$regex' => $searchString, '$options' => 'si'),
-				),
-				array(
-					'scientific_name' => array('$regex' => $searchString, '$options' => 'si'),
-				),
-				array(
-					'family' => array('$regex' => $searchString, '$options' => 'si'),
-				),
-				array(
-					'family' => array('$regex' => $searchString, '$options' => 'si'),
-				),
+				array('common_name' => $searchCriteria),
+				array('scientific_name' => $searchCriteria),
+				array('family' => $searchCriteria),
+				array('family' => $searchCriteria),
 			);
 		}
 
-
-		// order id matching
+		// order id filter
 		$orderMatch = array();
 		$orderMatch['order_id'] = array('$gt' => -1);
 		if ($orderId != -1) {
