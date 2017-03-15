@@ -585,8 +585,111 @@ class ReportsApiMapper {
 	 * @return array
 	 */
 	public static function searchAll(string $searchString, int $orderId): array {
-		$searchString = urldecode($searchString);
-		return self::executeProcedure(__METHOD__, 'CALL proc_searchAll(?,?);', [$searchString, $orderId]);
+
+		// add following so match filter is never empty;
+		// criteria should always test true
+		$searchString = trim(urldecode($searchString));
+		$stringMatch = array(
+			array(
+				'order_id' => array('$gt' => -1),
+			),
+		);
+		if (trim($searchString) != '') {
+			$stringMatch = array(
+				array(
+					'common_name' => array('$regex' => $searchString, '$options' => 'si'),
+				),
+				array(
+					'scientific_name' => array('$regex' => $searchString, '$options' => 'si'),
+				),
+				array(
+					'family' => array('$regex' => $searchString, '$options' => 'si'),
+				),
+				array(
+					'family' => array('$regex' => $searchString, '$options' => 'si'),
+				),
+			);
+		}
+
+
+		// order id matching
+		$orderMatch = array();
+		$orderMatch['order_id'] = array('$gt' => -1);
+		if ($orderId != -1) {
+			$orderMatch['order_id'] = array('$eq' => $orderId);
+		}
+
+		return
+			DB::collection('bird')
+				->raw(function ($collection) use ($orderMatch, $stringMatch) {
+					return $collection->aggregate(array(
+						array('$match' => $orderMatch),
+						array('$match' => array(
+							'$or' => $stringMatch,
+						)),
+						array('$project' => array(
+							'aou_list_id' => '$aou_list_id',
+						)),
+						array(
+							'$lookup' => array(
+								'from'         => "sighting",
+								'localField'   => "aou_list_id",
+								'foreignField' => "aou_list_id",
+								'as'           => "sighting",
+							),
+						),
+						array(
+							'$unwind' => array(
+								'path'                       => '$sighting',
+								'preserveNullAndEmptyArrays' => true,
+							),
+						),
+						array(
+							'$project' => array(
+								'aou_list_id'   => '$aou_list_id',
+								'sighting_date' => '$sighting.sighting_date',
+								'trip_id'       => '$sighting.trip_id',
+							),
+						),
+						array(
+							'$group' => array(
+								'_id'       => '$aou_list_id',
+								'last_seen' => array('$max' => '$sighting_date'),
+								'trips'     => array('$addToSet' => '$trip_id'),
+							),
+						),
+						array(
+							'$project' => array(
+								'last_seen' => '$last_seen',
+								'sightings' => array('$size' => '$trips'),
+							),
+						),
+						array(
+							'$lookup' => array(
+								'from'         => "bird",
+								'localField'   => "_id",
+								'foreignField' => "aou_list_id",
+								'as'           => "bird",
+							),
+						),
+						array('$unwind' => '$bird'),
+						array('$project' => array(
+							"_id"             => 0,
+							'id'              => '$_id',
+							'common_name'     => '$bird.common_name',
+							'scientific_name' => '$bird.scientific_name',
+							'family'          => '$bird.family',
+							'subfamily'       => '$bird.subfamily',
+							'order_id'        => '$bird.order_id',
+							'order_name'      => '$bird.order_name',
+							'order_notes'     => '$bird.order_notes',
+							'last_seen'       => '$last_seen',
+							'sightings'       => '$sightings',
+						)),
+						array('$sort' => array('common_name' => 1)),
+					));
+				})
+				->toArray();
 	}
 
 	/**
@@ -828,25 +931,6 @@ class ReportsApiMapper {
 					));
 				})
 				->toArray();
-	}
-
-	/**
-	 * @param string $method
-	 * @param string $callStatement
-	 * @param array  $params
-	 * @return array
-	 */
-	private static function executeProcedure(string $method, string $callStatement, array $params = []): array {
-		$cacheKey = $method . serialize($params);
-		/** @noinspection PhpUndefinedMethodInspection */
-		$results = Cache::get($cacheKey, function () use ($cacheKey, $callStatement, $params) {
-			/** @noinspection PhpUndefinedMethodInspection */
-			$results = DB::connection('mysql')->select($callStatement, $params);
-			/** @noinspection PhpUndefinedMethodInspection */
-			Cache::forever($cacheKey, $results);
-			return $results;
-		});
-		return $results;
 	}
 
 }
