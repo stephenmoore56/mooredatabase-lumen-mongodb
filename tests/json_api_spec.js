@@ -29,37 +29,6 @@ frisby.create('Species By Month JSON endpoint')
     })
     .toss();
 
-// frisby.create('Two Species By Month JSON endpoint')
-//     .get(baseURL + '/api/reports/twoSpeciesByMonth')
-//     .expectStatus(200)
-//     .expectHeader('Content-Type', 'application/json')
-//     .expectJSONTypes('data.*', {
-//         monthNumber: Number,
-//         monthName: String,
-//         monthLetter: String,
-//         speciesCountAnseriformes: Number,
-//         speciesCountPasseriformes: Number
-//     })
-//     .toss();
-//
-// frisby.create('Monthly average and record temps JSON endpoint')
-//     .get(baseURL + '/api/reports/monthlyTemps')
-//     .expectStatus(200)
-//     .expectHeader('Content-Type', 'application/json')
-//     .expectJSONTypes('data.*', {
-//         month_number: Number,
-//         month_name: String,
-//         month_abbrev: String,
-//         month_letter: String,
-//         avg_low_temp: Number,
-//         avg_high_temp: Number,
-//         record_low_temp: Number,
-//         record_high_temp: Number,
-//         avg_precipitation: Number,
-//         avg_snowfall: Number
-//     })
-//     .toss();
-
 frisby.create('Species By Year JSON endpoint')
     .get(baseURL + '/api/reports/speciesByYear')
     .expectStatus(200)
