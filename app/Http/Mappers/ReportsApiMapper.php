@@ -457,9 +457,9 @@ class ReportsApiMapper {
 						return $collection->aggregate(array(
 							array(
 								'$project' => array(
-									"_id"          => 0,
-									'order_id'     => '$order_id',
-									'aou_list_id'  => '$aou_list_id',
+									"_id"         => 0,
+									'order_id'    => '$order_id',
+									'aou_list_id' => '$aou_list_id',
 								),
 							),
 							array(
