@@ -452,14 +452,30 @@ class ReportsApiMapper {
 		$cacheKey = __METHOD__;
 		$results = Cache::get($cacheKey, function () use ($cacheKey) {
 			$results =
-				DB::collection('sighting')
+				DB::collection('bird')
 					->raw(function ($collection) {
 						return $collection->aggregate(array(
 							array(
+								'$project' => array(
+									"_id"          => 0,
+									'order_id'     => '$order_id',
+									'aou_list_id'  => '$aou_list_id',
+								),
+							),
+							array(
+								'$lookup' => array(
+									'from'         => "sighting",
+									'localField'   => "aou_list_id",
+									'foreignField' => "aou_list_id",
+									'as'           => "sighting",
+								),
+							),
+							array('$unwind' => '$sighting'),
+							array(
 								'$group' => array(
 									'_id'     => '$order_id',
-									'species' => array('$addToSet' => '$aou_list_id'),
-									'trips'   => array('$addToSet' => '$trip_id'),
+									'species' => array('$addToSet' => '$sighting.aou_list_id'),
+									'trips'   => array('$addToSet' => '$sighting.trip_id'),
 								),
 							),
 							array(
