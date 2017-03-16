@@ -38,14 +38,30 @@ class ReportsApiMapper {
 		$cacheKey = __METHOD__;
 		$results = Cache::get($cacheKey, function () use ($cacheKey) {
 			$results =
-				DB::collection('sighting')
+				DB::collection('time')
 					->raw(function ($collection) {
 						return $collection->aggregate(array(
 							array(
+								'$project' => array(
+									"_id"           => 0,
+									"sighting_date" => '$sighting_date',
+									'yearNumber'    => '$yearNumber',
+								),
+							),
+							array(
+								'$lookup' => array(
+									'from'         => "sighting",
+									'localField'   => "sighting_date",
+									'foreignField' => "sighting_date",
+									'as'           => "sighting",
+								),
+							),
+							array('$unwind' => '$sighting'),
+							array(
 								'$group' => array(
 									'_id'     => '$yearNumber',
-									'species' => array('$addToSet' => '$aou_list_id'),
-									'trips'   => array('$addToSet' => '$trip_id'),
+									'species' => array('$addToSet' => '$sighting.aou_list_id'),
+									'trips'   => array('$addToSet' => '$sighting.trip_id'),
 								),
 							),
 							array(
@@ -75,14 +91,30 @@ class ReportsApiMapper {
 		$cacheKey = __METHOD__;
 		$results = Cache::get($cacheKey, function () use ($cacheKey) {
 			$results =
-				DB::collection('sighting')
+				DB::collection('time')
 					->raw(function ($collection) {
 						return $collection->aggregate(array(
 							array(
+								'$project' => array(
+									"_id"           => 0,
+									"sighting_date" => '$sighting_date',
+									'monthNumber'   => '$monthNumber',
+								),
+							),
+							array(
+								'$lookup' => array(
+									'from'         => "sighting",
+									'localField'   => "sighting_date",
+									'foreignField' => "sighting_date",
+									'as'           => "sighting",
+								),
+							),
+							array('$unwind' => '$sighting'),
+							array(
 								'$group' => array(
 									'_id'     => '$monthNumber',
-									'species' => array('$addToSet' => '$aou_list_id'),
-									'trips'   => array('$addToSet' => '$trip_id'),
+									'species' => array('$addToSet' => '$sighting.aou_list_id'),
+									'trips'   => array('$addToSet' => '$sighting.trip_id'),
 								),
 							),
 							array(
@@ -124,7 +156,7 @@ class ReportsApiMapper {
 		$cacheKey = __METHOD__ . serialize([$monthNumber]);
 		$results = Cache::get($cacheKey, function () use ($cacheKey, $monthNumber) {
 			$results =
-				DB::collection('sighting')
+				DB::collection('time')
 					->raw(function ($collection) use ($monthNumber) {
 						return $collection->aggregate(array(
 							array(
@@ -133,22 +165,31 @@ class ReportsApiMapper {
 								),
 							),
 							array(
-								'$group' => array(
-									'_id'         => '$aou_list_id',
-									'monthNumber' => array('$first' => '$monthNumber'),
-									'last_seen'   => array('$max' => '$sighting_date'),
-									'sightings'   => array('$sum' => 1),
+								'$project' => array(
+									"_id"           => 0,
+									"sighting_date" => '$sighting_date',
+									'monthNumber'   => '$monthNumber',
+									'monthName'     => '$monthName',
 								),
 							),
 							array(
 								'$lookup' => array(
-									'from'         => "month",
-									'localField'   => "monthNumber",
-									'foreignField' => "monthNumber",
-									'as'           => "month",
+									'from'         => "sighting",
+									'localField'   => "sighting_date",
+									'foreignField' => "sighting_date",
+									'as'           => "sighting",
 								),
 							),
-							array('$unwind' => '$month'),
+							array('$unwind' => '$sighting'),
+							array(
+								'$group' => array(
+									'_id'         => '$sighting.aou_list_id',
+									'monthNumber' => array('$first' => '$monthNumber'),
+									'monthName'   => array('$first' => '$monthName'),
+									'last_seen'   => array('$max' => '$sighting_date'),
+									'sightings'   => array('$sum' => 1),
+								),
+							),
 							array(
 								'$lookup' => array(
 									'from'         => "bird",
@@ -169,7 +210,7 @@ class ReportsApiMapper {
 								'family'          => '$bird.family',
 								'subfamily'       => '$bird.subfamily',
 								'last_seen'       => '$last_seen',
-								'monthName'       => '$month.monthName',
+								'monthName'       => '$monthName',
 							)),
 							array('$sort' => array('common_name' => 1)),
 						));
@@ -191,7 +232,7 @@ class ReportsApiMapper {
 		$cacheKey = __METHOD__ . serialize([$year]);
 		$results = Cache::get($cacheKey, function () use ($cacheKey, $year) {
 			$results =
-				DB::collection('sighting')
+				DB::collection('time')
 					->raw(function ($collection) use ($year) {
 						return $collection->aggregate(array(
 							array(
@@ -200,8 +241,23 @@ class ReportsApiMapper {
 								),
 							),
 							array(
+								'$project' => array(
+									"_id"           => 0,
+									"sighting_date" => '$sighting_date',
+								),
+							),
+							array(
+								'$lookup' => array(
+									'from'         => "sighting",
+									'localField'   => "sighting_date",
+									'foreignField' => "sighting_date",
+									'as'           => "sighting",
+								),
+							),
+							array('$unwind' => '$sighting'),
+							array(
 								'$group' => array(
-									'_id'        => '$aou_list_id',
+									'_id'        => '$sighting.aou_list_id',
 									'first_seen' => array('$min' => '$sighting_date'),
 									'last_seen'  => array('$max' => '$sighting_date'),
 									'sightings'  => array('$sum' => 1),
@@ -343,21 +399,22 @@ class ReportsApiMapper {
 								),
 							),
 							array(
+								'$lookup' => array(
+									'from'         => "time",
+									'localField'   => "sighting_date",
+									'foreignField' => "sighting_date",
+									'as'           => "time",
+								),
+							),
+							array('$unwind' => '$time'),
+							array(
 								'$group' => array(
-									'_id'           => '$monthNumber',
+									'_id'           => '$time.monthNumber',
+									'monthName'     => array('$first' => '$time.monthName'),
 									'aou_list_id'   => array('$first' => '$aou_list_id'),
 									'sightingCount' => array('$sum' => 1),
 								),
 							),
-							array(
-								'$lookup' => array(
-									'from'         => "month",
-									'localField'   => "_id",
-									'foreignField' => "monthNumber",
-									'as'           => "month",
-								),
-							),
-							array('$unwind' => '$month'),
 							array(
 								'$lookup' => array(
 									'from'         => "bird",
@@ -372,7 +429,7 @@ class ReportsApiMapper {
 									"_id"           => 0,
 									'common_name'   => '$bird.common_name',
 									'monthNumber'   => '$_id',
-									'monthName'     => '$month.monthName',
+									'monthName'     => '$monthName',
 									'sightingCount' => '$sightingCount',
 								),
 							),
@@ -450,7 +507,7 @@ class ReportsApiMapper {
 		$cacheKey = __METHOD__ . serialize([$orderId]);
 		$results = Cache::get($cacheKey, function () use ($cacheKey, $orderId) {
 			$results =
-				DB::collection('sighting')
+				DB::collection('bird')
 					->raw(function ($collection) use ($orderId) {
 						return $collection->aggregate(array(
 							array(
@@ -459,9 +516,18 @@ class ReportsApiMapper {
 								),
 							),
 							array(
+								'$lookup' => array(
+									'from'         => "sighting",
+									'localField'   => "aou_list_id",
+									'foreignField' => "aou_list_id",
+									'as'           => "sighting",
+								),
+							),
+							array('$unwind' => '$sighting'),
+							array(
 								'$group' => array(
 									'_id'       => '$aou_list_id',
-									'last_seen' => array('$max' => '$sighting_date'),
+									'last_seen' => array('$max' => '$sighting.sighting_date'),
 									'sightings' => array('$sum' => 1),
 								),
 							),
@@ -883,14 +949,29 @@ class ReportsApiMapper {
 		$cacheKey = __METHOD__;
 		$results = Cache::get($cacheKey, function () use ($cacheKey) {
 			$results =
-				DB::collection('sighting')
+				DB::collection('location')
 					->raw(function ($collection) {
 						return $collection->aggregate(array(
 							array(
+								'$project' => array(
+									"_id"         => 0,
+									'location_id' => '$id',
+									'county_id'   => '$county_id'),
+							),
+							array(
+								'$lookup' => array(
+									'from'         => 'sighting',
+									'localField'   => 'location_id',
+									'foreignField' => 'location_id',
+									'as'           => 'sighting',
+								),
+							),
+							array('$unwind' => '$sighting'),
+							array(
 								'$group' => array(
 									'_id'     => '$county_id',
-									'species' => array('$addToSet' => '$aou_list_id'),
-									'trips'   => array('$addToSet' => '$trip_id'),
+									'species' => array('$addToSet' => '$sighting.aou_list_id'),
+									'trips'   => array('$addToSet' => '$sighting.trip_id'),
 								),
 							),
 							array(
@@ -912,11 +993,12 @@ class ReportsApiMapper {
 							array('$unwind' => '$county'),
 							array('$project' => array(
 								"_id"          => 0,
+								"county_id"    => '$county_id',
 								'tripCount'    => '$tripCount',
 								'speciesCount' => '$speciesCount',
 								'countyName'   => '$county.county_name',
 							)),
-							array('$sort' => array('species_count' => -1)),
+							array('$sort' => array('speciesCount' => -1)),
 						));
 					})
 					->toArray();
