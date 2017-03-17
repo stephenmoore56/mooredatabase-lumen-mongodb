@@ -20,7 +20,7 @@ frisby.create('Species By Month JSON endpoint')
     .get(baseURL + '/api/reports/speciesByMonth')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         monthNumber: Number,
         monthName: String,
         monthLetter: String,
@@ -33,7 +33,7 @@ frisby.create('Species By Year JSON endpoint')
     .get(baseURL + '/api/reports/speciesByYear')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         yearNumber: Number,
         tripCount: Number,
         speciesCount: Number
@@ -58,7 +58,7 @@ frisby.create('Species For Month JSON endpoint')
     .get(baseURL + '/api/reports/speciesForMonth/4')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         order_name: String,
         order_notes: String,
@@ -90,7 +90,7 @@ frisby.create('Species For Year JSON endpoint')
     .get(baseURL + '/api/reports/speciesForYear/2014')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         order_name: String,
         order_notes: String,
@@ -122,7 +122,7 @@ frisby.create('Species For Order JSON endpoint')
     .get(baseURL + '/api/reports/speciesForOrder/14')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         order_name: String,
         order_notes: String,
@@ -139,7 +139,7 @@ frisby.create('Species By Order JSON endpoint')
     .get(baseURL + '/api/reports/speciesByOrder')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         order_name: String,
         order_notes: String,
@@ -152,7 +152,7 @@ frisby.create('Species By Location JSON endpoint')
     .get(baseURL + '/api/reports/speciesByLocation')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         country_code: String,
         state_code: String,
@@ -178,7 +178,7 @@ frisby.create('Species By County JSON endpoint')
     .get(baseURL + '/api/reports/speciesByCounty')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         countyName: String,
         tripCount: Number,
         speciesCount: Number
@@ -189,7 +189,7 @@ frisby.create('All Species JSON endpoint')
     .get(baseURL + '/api/reports/speciesAll')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         order_name: String,
         order_notes: String,
@@ -206,7 +206,7 @@ frisby.create('List Orders JSON endpoint')
     .get(baseURL + '/api/reports/listOrders')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         order_name: String
     })
     .toss();
@@ -215,7 +215,7 @@ frisby.create('List Orders All JSON endpoint')
     .get(baseURL + '/api/reports/listOrdersAll')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         order_name: String,
         notes: String,
@@ -227,7 +227,7 @@ frisby.create('Search All using string and all orders')
     .get(baseURL + '/api/reports/searchAll/warbler/-1')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         order_name: String,
         common_name: String,
@@ -246,7 +246,7 @@ frisby.create('Search All using string and order')
     .get(baseURL + '/api/reports/searchAll/american/14')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         order_name: String,
         common_name: String,
@@ -265,7 +265,7 @@ frisby.create('Search All using URL-encoded space and all orders')
     .get(baseURL + '/api/reports/searchAll/%20/-1')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         order_name: String,
         common_name: String,
@@ -284,7 +284,7 @@ frisby.create('Search All using space and all orders')
     .get(baseURL + '/api/reports/searchAll/ /-1')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         order_name: String,
         common_name: String,
@@ -317,7 +317,7 @@ frisby.create('Species Detail JSON endpoint')
     .get(baseURL + '/api/reports/speciesDetail/992')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         order_name: String,
         order_notes: String,
@@ -350,7 +350,7 @@ frisby.create('Months For Species JSON endpoint')
     .get(baseURL + '/api/reports/monthsForSpecies/992')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         common_name: String,
         monthNumber: Number,
         monthName: String,
@@ -362,7 +362,7 @@ frisby.create('List Order Ids JSON endpoint')
     .get(baseURL + '/api/reports/listOrderIds')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         order_id: Number
     })
     .toss();
@@ -371,7 +371,7 @@ frisby.create('List Species Ids JSON endpoint')
     .get(baseURL + '/api/reports/listSpeciesIds')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         aou_list_id: Number
     })
     .toss();
@@ -380,7 +380,7 @@ frisby.create('List Location Ids JSON endpoint')
     .get(baseURL + '/api/reports/listLocationIds')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number
     })
     .toss();
@@ -403,7 +403,7 @@ frisby.create('Species For Location JSON endpoint')
     .get(baseURL + '/api/reports/speciesForLocation/14')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         order_name: String,
         common_name: String,
@@ -433,7 +433,7 @@ frisby.create('Location detail JSON endpoint')
     .get(baseURL + '/api/reports/locationDetail/14')
     .expectStatus(200)
     .expectHeader('Content-Type', 'application/json')
-    .expectJSONTypes('data.*', {
+    .expectJSONTypes('data.?', {
         id: Number,
         country_code: String,
         state_code: String,

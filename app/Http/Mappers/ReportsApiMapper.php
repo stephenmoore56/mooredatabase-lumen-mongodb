@@ -42,13 +42,6 @@ class ReportsApiMapper {
 					->raw(function ($collection) {
 						return $collection->aggregate(array(
 							array(
-								'$project' => array(
-									"_id"           => 0,
-									"sighting_date" => '$sighting_date',
-									'yearNumber'    => '$yearNumber',
-								),
-							),
-							array(
 								'$lookup' => array(
 									'from'         => "sighting",
 									'localField'   => "sighting_date",
@@ -94,13 +87,6 @@ class ReportsApiMapper {
 				DB::collection('time')
 					->raw(function ($collection) {
 						return $collection->aggregate(array(
-							array(
-								'$project' => array(
-									"_id"           => 0,
-									"sighting_date" => '$sighting_date',
-									'monthNumber'   => '$monthNumber',
-								),
-							),
 							array(
 								'$lookup' => array(
 									'from'         => "sighting",
@@ -162,14 +148,6 @@ class ReportsApiMapper {
 							array(
 								'$match' => array(
 									'monthNumber' => array('$eq' => $monthNumber),
-								),
-							),
-							array(
-								'$project' => array(
-									"_id"           => 0,
-									"sighting_date" => '$sighting_date',
-									'monthNumber'   => '$monthNumber',
-									'monthName'     => '$monthName',
 								),
 							),
 							array(
@@ -241,12 +219,6 @@ class ReportsApiMapper {
 								),
 							),
 							array(
-								'$project' => array(
-									"_id"           => 0,
-									"sighting_date" => '$sighting_date',
-								),
-							),
-							array(
 								'$lookup' => array(
 									'from'         => "sighting",
 									'localField'   => "sighting_date",
@@ -313,9 +285,6 @@ class ReportsApiMapper {
 									'aou_list_id' => array('$eq' => $speciesId),
 								),
 							),
-							array('$project' => array(
-								'aou_list_id' => '$aou_list_id',
-							)),
 							array(
 								'$lookup' => array(
 									'from'         => "sighting",
@@ -331,20 +300,13 @@ class ReportsApiMapper {
 								),
 							),
 							array(
-								'$project' => array(
-									'aou_list_id'   => '$aou_list_id',
-									'sighting_date' => '$sighting.sighting_date',
-									'trip_id'       => '$sighting.trip_id',
-								),
-							),
-							array(
 								'$group' => array(
 									'_id'              => '$aou_list_id',
-									'earliestSighting' => array('$min' => array('$substr' => ['$sighting_date', 5, 5])),
-									'latestSighting'   => array('$max' => array('$substr' => ['$sighting_date', 5, 5])),
-									'first_seen'       => array('$min' => '$sighting_date'),
-									'last_seen'        => array('$max' => '$sighting_date'),
-									'trips'            => array('$addToSet' => '$trip_id'),
+									'earliestSighting' => array('$min' => array('$substr' => ['$sighting.sighting_date', 5, 5])),
+									'latestSighting'   => array('$max' => array('$substr' => ['$sighting.sighting_date', 5, 5])),
+									'first_seen'       => array('$min' => '$sighting.sighting_date'),
+									'last_seen'        => array('$max' => '$sighting.sighting_date'),
+									'trips'            => array('$addToSet' => '$sighting.trip_id'),
 								),
 							),
 							array(
@@ -456,13 +418,6 @@ class ReportsApiMapper {
 					->raw(function ($collection) {
 						return $collection->aggregate(array(
 							array(
-								'$project' => array(
-									"_id"         => 0,
-									'order_id'    => '$order_id',
-									'aou_list_id' => '$aou_list_id',
-								),
-							),
-							array(
 								'$lookup' => array(
 									'from'         => "sighting",
 									'localField'   => "aou_list_id",
@@ -475,21 +430,12 @@ class ReportsApiMapper {
 								'$group' => array(
 									'_id'     => '$order_id',
 									'species' => array('$addToSet' => '$sighting.aou_list_id'),
-									'trips'   => array('$addToSet' => '$sighting.trip_id'),
-								),
-							),
-							array(
-								'$project' => array(
-									"_id"          => 0,
-									'order_id'     => '$_id',
-									'speciesCount' => array('$size' => '$species'),
-									'tripCount'    => array('$size' => '$trips'),
 								),
 							),
 							array(
 								'$lookup' => array(
 									'from'         => "order",
-									'localField'   => "order_id",
+									'localField'   => "_id",
 									'foreignField' => "id",
 									'as'           => "order",
 								),
@@ -497,11 +443,11 @@ class ReportsApiMapper {
 							array('$unwind' => '$order'),
 							array('$project' => array(
 								"_id"                     => 0,
-								'id'                      => '$order_id',
+								'id'                      => '$_id',
 								'order_name'              => '$order.order_name',
 								'order_notes'             => '$order.notes',
 								'order_species_count_all' => '$order.order_species_count_all',
-								'speciesCount'            => '$speciesCount',
+								'speciesCount'            => array('$size' => '$species'),
 							)),
 							array('$sort' => array('speciesCount' => -1)),
 						));
@@ -696,11 +642,11 @@ class ReportsApiMapper {
 				DB::collection('order')
 					->raw(function ($collection) {
 						return $collection->aggregate(array(
+							array('$sort' => array('order_id' => 1)),
 							array('$project' => array(
 								"_id"      => 0,
 								'order_id' => '$id',
 							)),
-							array('$sort' => array('order_id' => 1)),
 						));
 					})
 					->toArray();
@@ -722,6 +668,7 @@ class ReportsApiMapper {
 				DB::collection('sighting')
 					->raw(function ($collection) {
 						return $collection->aggregate(array(
+							array('$sort' => array('aou_list_id' => 1)),
 							array(
 								'$group' => array(
 									'_id' => '$aou_list_id',
@@ -731,7 +678,6 @@ class ReportsApiMapper {
 								"_id"         => 0,
 								'aou_list_id' => '$_id',
 							)),
-							array('$sort' => array('aou_list_id' => 1)),
 						));
 					})
 					->toArray();
@@ -753,11 +699,11 @@ class ReportsApiMapper {
 				DB::collection('location')
 					->raw(function ($collection) {
 						return $collection->aggregate(array(
+							array('$sort' => array('id' => 1)),
 							array('$project' => array(
 								"_id" => 0,
 								'id'  => '$id',
 							)),
-							array('$sort' => array('id' => 1)),
 						));
 					})
 					->toArray();
@@ -810,9 +756,6 @@ class ReportsApiMapper {
 							array('$match' => array(
 								'$or' => $stringMatch,
 							)),
-							array('$project' => array(
-								'aou_list_id' => '$aou_list_id',
-							)),
 							array(
 								'$lookup' => array(
 									'from'         => "sighting",
@@ -828,23 +771,10 @@ class ReportsApiMapper {
 								),
 							),
 							array(
-								'$project' => array(
-									'aou_list_id'   => '$aou_list_id',
-									'sighting_date' => '$sighting.sighting_date',
-									'trip_id'       => '$sighting.trip_id',
-								),
-							),
-							array(
 								'$group' => array(
 									'_id'       => '$aou_list_id',
-									'last_seen' => array('$max' => '$sighting_date'),
-									'trips'     => array('$addToSet' => '$trip_id'),
-								),
-							),
-							array(
-								'$project' => array(
-									'last_seen' => '$last_seen',
-									'sightings' => array('$size' => '$trips'),
+									'last_seen' => array('$max' => '$sighting.sighting_date'),
+									'trips'     => array('$addToSet' => '$sighting.trip_id'),
 								),
 							),
 							array(
@@ -867,7 +797,7 @@ class ReportsApiMapper {
 								'order_name'      => '$bird.order_name',
 								'order_notes'     => '$bird.order_notes',
 								'last_seen'       => '$last_seen',
-								'sightings'       => '$sightings',
+								'sightings'       => array('$size' => '$trips'),
 							)),
 							array('$sort' => array('common_name' => 1)),
 						));
@@ -899,17 +829,9 @@ class ReportsApiMapper {
 								),
 							),
 							array(
-								'$project' => array(
-									"_id"          => 0,
-									'location_id'  => '$_id',
-									'speciesCount' => array('$size' => '$species'),
-									'tripCount'    => array('$size' => '$trips'),
-								),
-							),
-							array(
 								'$lookup' => array(
 									'from'         => "location",
-									'localField'   => "location_id",
+									'localField'   => "_id",
 									'foreignField' => "id",
 									'as'           => "location",
 								),
@@ -925,11 +847,10 @@ class ReportsApiMapper {
 							),
 							array('$unwind' => '$ecs'),
 							array('$project' => array(
-								"_id"               => 0,
-								'id'                => '$location_id',
-								'trip_count'        => '$tripCount',
-								'species_count'     => '$speciesCount',
-								'trips'             => '$speciesCount',
+								'id'                => '$_id',
+								'trip_count'        => array('$size' => '$trips'),
+								'species_count'     => array('$size' => '$species'),
+								'trips'             => array('$size' => '$trips'),
 								'country_code'      => '$location.country_code',
 								'state_code'        => '$location.state_code',
 								'location_name'     => '$location.location_name',
@@ -969,15 +890,9 @@ class ReportsApiMapper {
 					->raw(function ($collection) {
 						return $collection->aggregate(array(
 							array(
-								'$project' => array(
-									"_id"         => 0,
-									'location_id' => '$id',
-									'county_id'   => '$county_id'),
-							),
-							array(
 								'$lookup' => array(
 									'from'         => 'sighting',
-									'localField'   => 'location_id',
+									'localField'   => 'id',
 									'foreignField' => 'location_id',
 									'as'           => 'sighting',
 								),
@@ -991,17 +906,9 @@ class ReportsApiMapper {
 								),
 							),
 							array(
-								'$project' => array(
-									"_id"          => 0,
-									'county_id'    => '$_id',
-									'speciesCount' => array('$size' => '$species'),
-									'tripCount'    => array('$size' => '$trips'),
-								),
-							),
-							array(
 								'$lookup' => array(
 									'from'         => "county",
-									'localField'   => "county_id",
+									'localField'   => "_id",
 									'foreignField' => "id",
 									'as'           => "county",
 								),
@@ -1010,8 +917,8 @@ class ReportsApiMapper {
 							array('$project' => array(
 								"_id"          => 0,
 								"county_id"    => '$county_id',
-								'tripCount'    => '$tripCount',
-								'speciesCount' => '$speciesCount',
+								'tripCount'    => array('$size' => '$trips'),
+								'speciesCount' => array('$size' => '$species'),
 								'countyName'   => '$county.county_name',
 							)),
 							array('$sort' => array('speciesCount' => -1)),
@@ -1106,17 +1013,9 @@ class ReportsApiMapper {
 								),
 							),
 							array(
-								'$project' => array(
-									"_id"          => 0,
-									'location_id'  => '$_id',
-									'speciesCount' => array('$size' => '$species'),
-									'tripCount'    => array('$size' => '$trips'),
-								),
-							),
-							array(
 								'$lookup' => array(
 									'from'         => "location",
-									'localField'   => "location_id",
+									'localField'   => "_id",
 									'foreignField' => "id",
 									'as'           => "location",
 								),
@@ -1133,9 +1032,9 @@ class ReportsApiMapper {
 							array('$unwind' => '$ecs'),
 							array('$project' => array(
 								"_id"                 => 0,
-								'id'                  => '$location_id',
-								'trip_count'          => '$tripCount',
-								'species_count'       => '$speciesCount',
+								'id'                  => '$_id',
+								'trip_count'          => array('$size' => '$trips'),
+								'species_count'       => array('$size' => '$species'),
 								'country_code'        => '$location.country_code',
 								'state_code'          => '$location.state_code',
 								'location_name'       => '$location.location_name',
