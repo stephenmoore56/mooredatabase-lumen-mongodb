@@ -299,6 +299,20 @@ frisby.create('Search All using space and all orders')
     })
     .toss();
 
+frisby.create('Search all using wierd search term and all orders')
+    .get(baseURL + '/api/reports/searchAll/dodoxxx/-1')
+    .expectStatus(404)
+    .expectHeader('Content-Type', 'application/json')
+    .expectJSONTypes('errors', {
+        status: String,
+        title: String
+    })
+    .expectJSON('errors', {
+        status: "404",
+        title: "Not Found"
+    })
+    .toss();
+
 frisby.create('Species Detail JSON endpoint; invalid species ID')
     .get(baseURL + '/api/reports/speciesDetail/9999')
     .expectStatus(404)

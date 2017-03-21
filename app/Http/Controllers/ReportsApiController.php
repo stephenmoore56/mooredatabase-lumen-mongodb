@@ -273,12 +273,15 @@ class ReportsApiController extends Controller {
 	 * search complete AOU list
 	 * @access  public
 	 * @param string $searchString
-	 * @param int $orderId
+	 * @param int    $orderId
 	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
 	 */
 	public static function searchAll(string $searchString, int $orderId) {
 		try {
 			$results = Mapper::searchAll($searchString, $orderId);
+			if ($results == []) {
+				return self::formatErrorResponse(Response::HTTP_NOT_FOUND, self::HTTP_NOT_FOUND_MESSAGE);
+			}
 			return self::formatNormalResponse(Response::HTTP_OK, $results);
 		} catch (Exception $e) {
 			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
