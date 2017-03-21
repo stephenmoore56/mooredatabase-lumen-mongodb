@@ -9,7 +9,7 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 class Controller extends BaseController {
 	/**
 	 * Format errors response
-	 * @param int $status
+	 * @param int    $status
 	 * @param string $title
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
@@ -19,7 +19,7 @@ class Controller extends BaseController {
 
 	/**
 	 * Format normal data response
-	 * @param int $status
+	 * @param int   $status
 	 * @param array $results
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */

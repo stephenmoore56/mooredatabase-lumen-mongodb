@@ -1,8 +1,8 @@
 'use strict';
 
 let frisby = require('frisby');
-let baseURL = 'http://mongodb.local';
-// let baseURL = 'http://lumen.moore-database.com';
+// let baseURL = 'http://mongodb.local';
+let baseURL = 'http://lumen.moore-database.com';
 
 frisby.create('Clear cache')
     .get(baseURL + '/api/reports/clearCache')
@@ -461,5 +461,30 @@ frisby.create('Location detail JSON endpoint')
         ecs_subsection_url: String,
         trip_count: Number,
         species_count: Number
+    })
+    .toss();
+
+frisby.create('Monthly temperatures')
+    .get(baseURL + '/api/reports/monthlyTemperatures')
+    .expectStatus(200)
+    .expectHeader('Content-Type', 'application/json')
+    .expectJSONTypes('data.?', {
+        monthNumber: Number,
+        avg_low_temp: Number,
+        record_low_temp: Number,
+        avg_high_temp: Number,
+        record_high_temp: Number
+    })
+    .toss();
+
+frisby.create('Ducks and Warblers')
+    .get(baseURL + '/api/reports/ducksAndWarblers')
+    .expectStatus(200)
+    .expectHeader('Content-Type', 'application/json')
+    .expectJSONTypes('data.?', {
+        monthNumber: Number,
+        speciesCount: Number,
+        family: String,
+        monthLetter: String
     })
     .toss();

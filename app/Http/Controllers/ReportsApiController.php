@@ -352,4 +352,32 @@ class ReportsApiController extends Controller {
 		}
 	}
 
+	/**
+	 * List average and record low/high temperatures for each month
+	 * @access  public
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
+	public static function monthlyTemperatures() {
+		try {
+			$results = Mapper::monthlyTemperatures();
+			return self::formatNormalResponse(Response::HTTP_OK, $results);
+		} catch (Exception $e) {
+			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
+		}
+	}
+
+	/**
+	 * List sightings by month for ducks and warblers
+	 * @access  public
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
+	public static function ducksAndWarblers() {
+		try {
+			$results = Mapper::ducksAndWarblers();
+			return self::formatNormalResponse(Response::HTTP_OK, $results);
+		} catch (Exception $e) {
+			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
+		}
+	}
+
 }

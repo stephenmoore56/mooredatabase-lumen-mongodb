@@ -11,13 +11,15 @@ php dump_table_to_json.php 127.0.0.1 root gsnyder56 birding order_view $OUTPUT_D
 php dump_table_to_json.php 127.0.0.1 root gsnyder56 birding county $OUTPUT_DIR/county.json
 php dump_table_to_json.php 127.0.0.1 root gsnyder56 birding month $OUTPUT_DIR/month.json
 php dump_table_to_json.php 127.0.0.1 root gsnyder56 birding time_view $OUTPUT_DIR/time.json
+php dump_table_to_json.php 127.0.0.1 root gsnyder56 birding temperature_view $OUTPUT_DIR/temperature.json
 
 mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields aou_list_id     --collection bird 	    --jsonArray --file $OUTPUT_DIR/bird.json
 mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields id              --collection trip 	    --jsonArray --file $OUTPUT_DIR/trip.json
-mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields id              --collection location	--jsonArray --file $OUTPUT_DIR/location.json
-mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields subsection_id   --collection ecs 		--jsonArray --file $OUTPUT_DIR/ecs.json
-mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields id              --collection sighting	--jsonArray --file $OUTPUT_DIR/sighting.json
-mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields id              --collection order	--jsonArray --file $OUTPUT_DIR/order.json
-mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields id              --collection county	--jsonArray --file $OUTPUT_DIR/county.json
-mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields monthNumber     --collection month	--jsonArray --file $OUTPUT_DIR/month.json
-mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields sighting_date     --collection time	--jsonArray --file $OUTPUT_DIR/time.json
+mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields id              --collection location	    --jsonArray --file $OUTPUT_DIR/location.json
+mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields subsection_id   --collection ecs 		    --jsonArray --file $OUTPUT_DIR/ecs.json
+mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields id              --collection sighting	    --jsonArray --file $OUTPUT_DIR/sighting.json
+mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields id              --collection order	    --jsonArray --file $OUTPUT_DIR/order.json
+mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields id              --collection county	    --jsonArray --file $OUTPUT_DIR/county.json
+mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields monthNumber     --collection month	    --jsonArray --file $OUTPUT_DIR/month.json
+mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields sighting_date   --collection time	        --jsonArray --file $OUTPUT_DIR/time.json
+mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields monthNumber     --collection temperature	--jsonArray --file $OUTPUT_DIR/temperature.json
