@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Mappers;
 
@@ -428,8 +428,9 @@ class ReportsApiMapper {
 							array('$unwind' => '$sighting'),
 							array(
 								'$group' => array(
-									'_id'     => '$order_id',
-									'species' => array('$addToSet' => '$sighting.aou_list_id'),
+									'_id'       => '$order_id',
+									'species'   => array('$addToSet' => '$sighting.aou_list_id'),
+									'sightings' => array('$sum' => 1),
 								),
 							),
 							array(
@@ -448,6 +449,7 @@ class ReportsApiMapper {
 								'order_notes'             => '$order.notes',
 								'order_species_count_all' => '$order.order_species_count_all',
 								'speciesCount'            => array('$size' => '$species'),
+								'sightingCount'           => '$sightings',
 							)),
 							array('$sort' => array('speciesCount' => -1)),
 						));
