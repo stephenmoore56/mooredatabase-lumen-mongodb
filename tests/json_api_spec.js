@@ -1,8 +1,8 @@
 'use strict';
 
 let frisby = require('frisby');
-// let baseURL = 'http://mongodb.local';
-let baseURL = 'http://lumen.moore-database.com';
+let baseURL = 'http://mongodb.local';
+// let baseURL = 'http://lumen.moore-database.com';
 
 frisby.create('Clear cache')
     .get(baseURL + '/api/reports/clearCache')
@@ -25,7 +25,8 @@ frisby.create('Species By Month JSON endpoint')
         monthName: String,
         monthLetter: String,
         tripCount: Number,
-        speciesCount: Number
+        speciesCount: Number,
+        sightingCount: Number
     })
     .toss();
 
@@ -36,7 +37,8 @@ frisby.create('Species By Year JSON endpoint')
     .expectJSONTypes('data.?', {
         yearNumber: Number,
         tripCount: Number,
-        speciesCount: Number
+        speciesCount: Number,
+        sightingCount: Number
     })
     .toss();
 
@@ -144,7 +146,8 @@ frisby.create('Species By Order JSON endpoint')
         order_name: String,
         order_notes: String,
         order_species_count_all: Number,
-        speciesCount: Number
+        speciesCount: Number,
+        sightingCount: Number
     })
     .toss();
 
@@ -162,6 +165,7 @@ frisby.create('Species By Location JSON endpoint')
         longitude: Number,
         ecs_subsection_id: Number,
         species_count: Number,
+        sightingCount: Number,
         trip_count: Number,
         trips: Number, // duplicate field
         subsection_id: Number, // duplicate field

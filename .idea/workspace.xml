@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="254efc1c-2e09-40ea-801e-66b617f0278f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/mooredatabase-lumen-mongodb.iml" afterPath="$PROJECT_DIR$/.idea/mooredatabase-lumen-mongodb.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportsApiController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportsApiController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Mappers/ReportsApiMapper.php" afterPath="$PROJECT_DIR$/app/Http/Mappers/ReportsApiMapper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/json_api_spec.js" afterPath="$PROJECT_DIR$/tests/json_api_spec.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,25 +23,10 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ReportsApiMapper.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Mappers/ReportsApiMapper.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2592">
-              <caret line="431" column="12" lean-forward="false" selection-start-line="431" selection-start-column="12" selection-end-line="431" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Illuminate\Support\Facades\DB</find>
-      <find>order_species</find>
-      <find>first</find>
-      <find>DB::s</find>
       <find>listorder</find>
       <find>listordersall</find>
       <find>sightingsby</find>
@@ -66,7 +52,11 @@
       <find>&quot;</find>
       <find>$or</find>
       <find>searchall</find>
+      <find>speciesBy</find>
       <find>speciesbyorder</find>
+      <find>speciesbyyear</find>
+      <find>speciesByMonth</find>
+      <find>speciesbylocation</find>
     </findStrings>
     <replaceStrings>
       <replace>__METHOD__</replace>
@@ -438,21 +428,21 @@
       <workItem from="1490056290383" duration="1782000" />
       <workItem from="1490114210918" duration="8519000" />
       <workItem from="1490205303785" duration="289000" />
-      <workItem from="1490635139340" duration="3643000" />
+      <workItem from="1490635139340" duration="6712000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106616000" />
+    <option name="totallyTimeSpent" value="109685000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="-4" width="1877" height="1084" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20458178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20458178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43229166" sideWeight="0.5019157" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23218673" sideWeight="0.49808428" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -466,7 +456,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19430052" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23218673" sideWeight="0.49808428" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -633,6 +622,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="706">
           <caret line="75" column="72" lean-forward="true" selection-start-line="75" selection-start-column="72" selection-end-line="75" selection-end-column="72" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -658,25 +648,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/json_api_spec.js">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReportsApiController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state relative-caret-position="684">
+          <caret line="374" column="13" lean-forward="false" selection-start-line="374" selection-start-column="13" selection-end-line="374" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReportsApiController.php">
+    <entry file="file://$PROJECT_DIR$/tests/json_api_spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="374" column="13" lean-forward="false" selection-start-line="374" selection-start-column="13" selection-end-line="374" selection-end-column="13" />
+        <state relative-caret-position="324">
+          <caret line="18" column="47" lean-forward="true" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Mappers/ReportsApiMapper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2592">
-          <caret line="431" column="12" lean-forward="false" selection-start-line="431" selection-start-column="12" selection-end-line="431" selection-end-column="12" />
+        <state relative-caret-position="322">
+          <caret line="843" column="34" lean-forward="true" selection-start-line="843" selection-start-column="34" selection-end-line="843" selection-end-column="34" />
           <folding />
         </state>
       </provider>

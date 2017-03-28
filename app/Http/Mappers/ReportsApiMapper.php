@@ -52,17 +52,19 @@ class ReportsApiMapper {
 							array('$unwind' => '$sighting'),
 							array(
 								'$group' => array(
-									'_id'     => '$yearNumber',
-									'species' => array('$addToSet' => '$sighting.aou_list_id'),
-									'trips'   => array('$addToSet' => '$sighting.trip_id'),
+									'_id'           => '$yearNumber',
+									'species'       => array('$addToSet' => '$sighting.aou_list_id'),
+									'trips'         => array('$addToSet' => '$sighting.trip_id'),
+									'sightingCount' => array('$sum' => 1),
 								),
 							),
 							array(
 								'$project' => array(
-									'_id'          => 0,
-									'yearNumber'   => '$_id',
-									'speciesCount' => array('$size' => '$species'),
-									'tripCount'    => array('$size' => '$trips'),
+									'_id'           => 0,
+									'yearNumber'    => '$_id',
+									'speciesCount'  => array('$size' => '$species'),
+									'tripCount'     => array('$size' => '$trips'),
+									'sightingCount' => '$sightingCount',
 								),
 							),
 							array('$sort' => array('yearNumber' => 1)),
@@ -98,9 +100,10 @@ class ReportsApiMapper {
 							array('$unwind' => '$sighting'),
 							array(
 								'$group' => array(
-									'_id'     => '$monthNumber',
-									'species' => array('$addToSet' => '$sighting.aou_list_id'),
-									'trips'   => array('$addToSet' => '$sighting.trip_id'),
+									'_id'           => '$monthNumber',
+									'species'       => array('$addToSet' => '$sighting.aou_list_id'),
+									'trips'         => array('$addToSet' => '$sighting.trip_id'),
+									'sightingCount' => array('$sum' => 1),
 								),
 							),
 							array(
@@ -114,12 +117,13 @@ class ReportsApiMapper {
 							array('$unwind' => '$month'),
 							array(
 								'$project' => array(
-									'_id'          => 0,
-									'monthNumber'  => '$_id',
-									'monthName'    => '$month.monthName',
-									'monthLetter'  => '$month.monthLetter',
-									'speciesCount' => array('$size' => '$species'),
-									'tripCount'    => array('$size' => '$trips'),
+									'_id'           => 0,
+									'monthNumber'   => '$_id',
+									'monthName'     => '$month.monthName',
+									'monthLetter'   => '$month.monthLetter',
+									'speciesCount'  => array('$size' => '$species'),
+									'tripCount'     => array('$size' => '$trips'),
+									'sightingCount' => '$sightingCount',
 								),
 							),
 							array('$sort' => array('monthNumber' => 1)),
@@ -428,9 +432,9 @@ class ReportsApiMapper {
 							array('$unwind' => '$sighting'),
 							array(
 								'$group' => array(
-									'_id'       => '$order_id',
-									'species'   => array('$addToSet' => '$sighting.aou_list_id'),
-									'sightings' => array('$sum' => 1),
+									'_id'           => '$order_id',
+									'species'       => array('$addToSet' => '$sighting.aou_list_id'),
+									'sightingCount' => array('$sum' => 1),
 								),
 							),
 							array(
@@ -449,7 +453,7 @@ class ReportsApiMapper {
 								'order_notes'             => '$order.notes',
 								'order_species_count_all' => '$order.order_species_count_all',
 								'speciesCount'            => array('$size' => '$species'),
-								'sightingCount'           => '$sightings',
+								'sightingCount'           => '$sightingCount',
 							)),
 							array('$sort' => array('speciesCount' => -1)),
 						));
@@ -825,9 +829,10 @@ class ReportsApiMapper {
 						return $collection->aggregate(array(
 							array(
 								'$group' => array(
-									'_id'     => '$location_id',
-									'species' => array('$addToSet' => '$aou_list_id'),
-									'trips'   => array('$addToSet' => '$trip_id'),
+									'_id'           => '$location_id',
+									'species'       => array('$addToSet' => '$aou_list_id'),
+									'trips'         => array('$addToSet' => '$trip_id'),
+									'sightingCount' => array('$sum' => 1),
 								),
 							),
 							array(
@@ -852,6 +857,7 @@ class ReportsApiMapper {
 								'id'                => '$_id',
 								'trip_count'        => array('$size' => '$trips'),
 								'species_count'     => array('$size' => '$species'),
+								'sightingCount'     => '$sightingCount',
 								'trips'             => array('$size' => '$trips'),
 								'country_code'      => '$location.country_code',
 								'state_code'        => '$location.state_code',
