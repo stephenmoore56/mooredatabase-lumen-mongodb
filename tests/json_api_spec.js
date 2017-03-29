@@ -492,3 +492,13 @@ frisby.create('Ducks and Warblers')
         monthLetter: String
     })
     .toss();
+
+frisby.create('Carousel image endpoint')
+    .get(baseURL + '/api/reports/carouselImages')
+    .expectStatus(200)
+    .expectHeader('Content-Type', 'application/json')
+    .expectJSONTypes('data.?', {
+        src: String,
+        alt: String
+    })
+    .toss();

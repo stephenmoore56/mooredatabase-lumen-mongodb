@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Response;
 use \Exception as Exception;
 use App\Http\Mappers\ReportsApiMapper as Mapper;
+use App\Http\Mappers\S3Mapper as S3Mapper;
 
 /**
  * Methods that serve JSON data for reports
@@ -374,6 +375,20 @@ class ReportsApiController extends Controller {
 	public static function ducksAndWarblers() {
 		try {
 			$results = Mapper::ducksAndWarblers();
+			return self::formatNormalResponse(Response::HTTP_OK, $results);
+		} catch (Exception $e) {
+			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
+		}
+	}
+
+	/**
+	 * List carousel images
+	 * @access  public
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
+	public static function carouselImages() {
+		try {
+			$results = S3Mapper::carouselImages();
 			return self::formatNormalResponse(Response::HTTP_OK, $results);
 		} catch (Exception $e) {
 			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
