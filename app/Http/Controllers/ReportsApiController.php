@@ -388,8 +388,10 @@ class ReportsApiController extends Controller {
 	 */
 	public static function carouselImages() {
 		try {
+			// choose an image at random from the array
 			$results = S3Mapper::carouselImages();
-			return self::formatNormalResponse(Response::HTTP_OK, $results);
+			$result = [$results[array_rand($results)]];
+			return self::formatNormalResponse(Response::HTTP_OK,$result);
 		} catch (Exception $e) {
 			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
 		}

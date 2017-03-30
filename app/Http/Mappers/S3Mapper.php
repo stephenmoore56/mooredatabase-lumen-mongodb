@@ -37,7 +37,6 @@ class S3Mapper {
 			foreach ($objects as $object) {
 				array_push($results, ['src' => $url . $object['Key'], 'alt' => 'Image']);
 			}
-			shuffle($results);
 			/** @noinspection PhpUndefinedMethodInspection */
 			Cache::forever($cacheKey, $results);
 			return $results;
