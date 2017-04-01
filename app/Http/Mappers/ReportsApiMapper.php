@@ -1087,6 +1087,7 @@ class ReportsApiMapper {
 								'avg_high_temp'    => '$avg_high_temp',
 								'record_low_temp'  => '$record_low_temp',
 								'record_high_temp' => '$record_high_temp',
+								'days_with_frost'  => '$days_with_frost',
 							)),
 						));
 					})

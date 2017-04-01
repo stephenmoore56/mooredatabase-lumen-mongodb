@@ -477,7 +477,8 @@ frisby.create('Monthly temperatures')
         avg_low_temp: Number,
         record_low_temp: Number,
         avg_high_temp: Number,
-        record_high_temp: Number
+        record_high_temp: Number,
+        days_with_frost: Number
     })
     .toss();
 
