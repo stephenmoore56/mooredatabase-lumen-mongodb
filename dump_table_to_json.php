@@ -135,7 +135,7 @@
             {
                 break;
             }
-            $json = json_encode( $row );
+            $json = json_encode( $row, JSON_NUMERIC_CHECK );
             if( ! $openbracket )
             {
                 fwrite( $file, "[\n" );
