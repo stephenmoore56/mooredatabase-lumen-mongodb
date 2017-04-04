@@ -1,4 +1,3 @@
-use birding
 db.location.find().forEach(function(doc) {
     doc.geo = {
         type: "Point",
