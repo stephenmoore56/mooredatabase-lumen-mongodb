@@ -2,6 +2,8 @@
 
 OUTPUT_DIR="./json_data"
 
+cd /var/www/html/mooredatabase-lumen-mongodb
+
 php dump_table_to_json.php 127.0.0.1 root gsnyder56 birding birds $OUTPUT_DIR/bird.json
 php dump_table_to_json.php 127.0.0.1 root gsnyder56 birding trip_view $OUTPUT_DIR/trip.json
 php dump_table_to_json.php 127.0.0.1 root gsnyder56 birding birding_locations $OUTPUT_DIR/location.json
@@ -23,3 +25,8 @@ mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding -
 mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields monthNumber     --collection month	    --jsonArray --file $OUTPUT_DIR/month.json
 mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields sighting_date   --collection time	        --jsonArray --file $OUTPUT_DIR/time.json
 mongoimport -u smoore -p gsnyder56 --authenticationDatabase admin --db birding --upsertFields monthNumber     --collection temperature	--jsonArray --file $OUTPUT_DIR/temperature.json
+
+# run scripts against data after import
+# 
+# 
+mongo -u smoore -p gsnyder56 --authenticationDatabase admin < createGeoField.js  
