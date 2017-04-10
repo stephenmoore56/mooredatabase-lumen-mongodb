@@ -67,7 +67,7 @@ class ReportsApiMapper {
 									'sightingCount' => '$sightingCount',
 								),
 							),
-							array('$sort' => array('yearNumber' => 1)),
+							array('$sort' => array('yearNumber' => -1)),
 						));
 					})
 					->toArray();
@@ -122,7 +122,7 @@ class ReportsApiMapper {
 									'monthDay'      => array('$literal' => $monthDay),
 								),
 							),
-							array('$sort' => array('yearNumber' => 1)),
+							array('$sort' => array('yearNumber' => -1)),
 						));
 					})
 					->toArray();
