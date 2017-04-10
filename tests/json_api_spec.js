@@ -42,6 +42,19 @@ frisby.create('Species By Year JSON endpoint')
     })
     .toss();
 
+frisby.create('Species YTD JSON endpoint')
+    .get(baseURL + '/api/reports/speciesYTD')
+    .expectStatus(200)
+    .expectHeader('Content-Type', 'application/json')
+    .expectJSONTypes('data.?', {
+        yearNumber: Number,
+        tripCount: Number,
+        speciesCount: Number,
+        sightingCount: Number,
+        monthDay: String
+    })
+    .toss();
+
 frisby.create('Species For Month JSON endpoint; invalid month')
     .get(baseURL + '/api/reports/speciesForMonth/14')
     .expectStatus(400)

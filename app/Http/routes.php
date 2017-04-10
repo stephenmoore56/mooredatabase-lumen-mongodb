@@ -37,3 +37,4 @@ $app->get('/api/reports/speciesForYear/{year:[0-9]\d*}', 'ReportsApiController@s
 $app->get('/api/reports/monthlyTemperatures', 'ReportsApiController@monthlyTemperatures');
 $app->get('/api/reports/ducksAndWarblers', 'ReportsApiController@ducksAndWarblers');
 $app->get('/api/reports/carouselImages', 'ReportsApiController@carouselImages');
+$app->get('/api/reports/speciesYTD', 'ReportsApiController@speciesYTD');

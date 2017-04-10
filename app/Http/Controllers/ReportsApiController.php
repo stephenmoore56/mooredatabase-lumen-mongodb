@@ -79,6 +79,20 @@ class ReportsApiController extends Controller {
 	}
 
 	/**
+	 * List species and trips year-to-date by year
+	 * @access  public
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
+	public static function speciesYTD() {
+		try {
+			$results = Mapper::speciesYTD();
+			return self::formatNormalResponse(Response::HTTP_OK, $results);
+		} catch (Exception $e) {
+			return self::formatErrorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
+		}
+	}
+
+	/**
 	 * List species for month
 	 * @access  public
 	 * @param int $monthNumber

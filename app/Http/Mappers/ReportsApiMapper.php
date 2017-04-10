@@ -78,6 +78,61 @@ class ReportsApiMapper {
 	}
 
 	/**
+	 * List species and trips year-to-date by year
+	 * @access  public
+	 * @return array
+	 */
+	public static function speciesYTD(): array {
+		$monthDay = date('m-d');
+		$cacheKey = __METHOD__ . $monthDay;
+		$results = Cache::get($cacheKey, function () use ($cacheKey, $monthDay) {
+			$results =
+				DB::collection('time')
+					->raw(function ($collection) use ($monthDay) {
+						return $collection->aggregate(array(
+							array(
+								'$match' => array(
+									'monthDay' => array('$lte' => $monthDay),
+								),
+							),
+							array(
+								'$lookup' => array(
+									'from'         => 'sighting',
+									'localField'   => 'sighting_date',
+									'foreignField' => 'sighting_date',
+									'as'           => 'sighting',
+								),
+							),
+							array('$unwind' => '$sighting'),
+							array(
+								'$group' => array(
+									'_id'           => '$yearNumber',
+									'species'       => array('$addToSet' => '$sighting.aou_list_id'),
+									'trips'         => array('$addToSet' => '$sighting.trip_id'),
+									'sightingCount' => array('$sum' => 1),
+								),
+							),
+							array(
+								'$project' => array(
+									'_id'           => 0,
+									'yearNumber'    => '$_id',
+									'speciesCount'  => array('$size' => '$species'),
+									'tripCount'     => array('$size' => '$trips'),
+									'sightingCount' => '$sightingCount',
+									'monthDay'      => array('$literal' => $monthDay),
+								),
+							),
+							array('$sort' => array('yearNumber' => 1)),
+						));
+					})
+					->toArray();
+			Cache::forever($cacheKey, $results);
+			return $results;
+		});
+		return $results;
+	}
+
+	/**
 	 * List species and trips by month
 	 * @access  public
 	 * @return array
@@ -1101,7 +1156,6 @@ class ReportsApiMapper {
 	/**
 	 * List species for order
 	 * @access  public
-	 * @param int $orderId
 	 * @return array
 	 */
 	public static function ducksAndWarblers(): array {
