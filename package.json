@@ -13,5 +13,8 @@
   "license": "ISC",
   "devDependencies": {
     "frisby": "^0.8.5"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
   }
 }

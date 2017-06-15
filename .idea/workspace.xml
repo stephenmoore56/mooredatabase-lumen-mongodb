@@ -5,7 +5,112 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="254efc1c-2e09-40ea-801e-66b617f0278f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Mappers/ReportsApiMapper.php" afterPath="$PROJECT_DIR$/app/Http/Mappers/ReportsApiMapper.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/composer.json" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Api/Operation.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Api/Operation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Api/Parser/AbstractRestParser.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Api/Parser/AbstractRestParser.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Api/Serializer/JsonBody.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Api/Serializer/JsonBody.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Api/Serializer/RestSerializer.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Api/Serializer/RestSerializer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Api/Serializer/XmlBody.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Api/Serializer/XmlBody.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Api/Validator.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Api/Validator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/ApiGateway/ApiGatewayClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/ApiGateway/ApiGatewayClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/ClientResolver.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/ClientResolver.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/CloudDirectory/CloudDirectoryClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/CloudDirectory/CloudDirectoryClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/CloudFront/CloudFrontClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/CloudFront/CloudFrontClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/CodeDeploy/CodeDeployClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/CodeDeploy/CodeDeployClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/CognitoIdentityProvider/CognitoIdentityProviderClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/CognitoIdentityProvider/CognitoIdentityProviderClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/DatabaseMigrationService/DatabaseMigrationServiceClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/DatabaseMigrationService/DatabaseMigrationServiceClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/DeviceFarm/DeviceFarmClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/DeviceFarm/DeviceFarmClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Ec2/Ec2Client.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Ec2/Ec2Client.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/ElastiCache/ElastiCacheClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/ElastiCache/ElastiCacheClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/ElasticLoadBalancing/ElasticLoadBalancingClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/ElasticLoadBalancing/ElasticLoadBalancingClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/ElasticLoadBalancingV2/ElasticLoadBalancingV2Client.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/ElasticLoadBalancingV2/ElasticLoadBalancingV2Client.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Endpoint/Partition.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Endpoint/Partition.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Exception/AwsException.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Exception/AwsException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Iam/IamClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Iam/IamClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Inspector/InspectorClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Inspector/InspectorClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/KinesisAnalytics/KinesisAnalyticsClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/KinesisAnalytics/KinesisAnalyticsClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Lambda/LambdaClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Lambda/LambdaClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/LexRuntimeService/LexRuntimeServiceClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/LexRuntimeService/LexRuntimeServiceClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Lightsail/LightsailClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Lightsail/LightsailClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/MultiRegionClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/MultiRegionClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/OpsWorks/OpsWorksClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/OpsWorks/OpsWorksClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Pinpoint/PinpointClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Pinpoint/PinpointClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Rds/RdsClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Rds/RdsClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Redshift/RedshiftClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Redshift/RedshiftClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Rekognition/RekognitionClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Rekognition/RekognitionClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/RetryMiddleware.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/RetryMiddleware.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/S3/ObjectCopier.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/S3/ObjectCopier.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/S3/S3Client.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/S3/S3Client.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/S3/S3EndpointMiddleware.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/S3/S3EndpointMiddleware.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/S3/S3MultiRegionClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/S3/S3MultiRegionClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/S3/Transfer.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/S3/Transfer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Sdk.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Sdk.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Sqs/SqsClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Sqs/SqsClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/StorageGateway/StorageGatewayClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/StorageGateway/StorageGatewayClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/WorkDocs/WorkDocsClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/WorkDocs/WorkDocsClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/apigateway/2015-07-09/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/apigateway/2015-07-09/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/application-autoscaling/2016-02-06/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/application-autoscaling/2016-02-06/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/appstream/2016-12-01/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/appstream/2016-12-01/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/autoscaling/2011-01-01/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/autoscaling/2011-01-01/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/batch/2016-08-10/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/batch/2016-08-10/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/clouddirectory/2016-05-10/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/clouddirectory/2016-05-10/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/clouddirectory/2016-05-10/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/clouddirectory/2016-05-10/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/cloudformation/2010-05-15/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/cloudformation/2010-05-15/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/cloudformation/2010-05-15/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/cloudformation/2010-05-15/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/cloudformation/2010-05-15/waiters-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/cloudformation/2010-05-15/waiters-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/codebuild/2016-10-06/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/codebuild/2016-10-06/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/codedeploy/2014-10-06/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/codedeploy/2014-10-06/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/cognito-idp/2016-04-18/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/cognito-idp/2016-04-18/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/config/2014-11-12/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/config/2014-11-12/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/devicefarm/2015-06-23/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/devicefarm/2015-06-23/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/dms/2016-01-01/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/dms/2016-01-01/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/ec2/2016-11-15/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/ec2/2016-11-15/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/ecs/2014-11-13/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/ecs/2014-11-13/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/ecs/2014-11-13/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/ecs/2014-11-13/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/elasticache/2015-02-02/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/elasticache/2015-02-02/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/elasticache/2015-02-02/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/elasticache/2015-02-02/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/elasticloadbalancing/2012-06-01/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/elasticloadbalancing/2012-06-01/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/elasticloadbalancingv2/2015-12-01/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/elasticloadbalancingv2/2015-12-01/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/elasticloadbalancingv2/2015-12-01/waiters-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/elasticloadbalancingv2/2015-12-01/waiters-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/endpoints.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/endpoints.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/gamelift/2015-10-01/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/gamelift/2015-10-01/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/iam/2010-05-08/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/iam/2010-05-08/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/inspector/2016-02-16/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/inspector/2016-02-16/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/iot/2015-05-28/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/iot/2015-05-28/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/kinesis/2013-12-02/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/kinesis/2013-12-02/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/kinesis/2013-12-02/waiters-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/kinesis/2013-12-02/waiters-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/kinesisanalytics/2015-08-14/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/kinesisanalytics/2015-08-14/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/lambda/2015-03-31/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/lambda/2015-03-31/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/lightsail/2016-11-28/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/lightsail/2016-11-28/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/logs/2014-03-28/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/logs/2014-03-28/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/manifest.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/manifest.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/monitoring/2010-08-01/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/monitoring/2010-08-01/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/monitoring/2010-08-01/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/monitoring/2010-08-01/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/opsworks/2013-02-18/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/opsworks/2013-02-18/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/opsworks/2013-02-18/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/opsworks/2013-02-18/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/organizations/2016-11-28/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/organizations/2016-11-28/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/organizations/2016-11-28/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/organizations/2016-11-28/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/pinpoint/2016-12-01/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/pinpoint/2016-12-01/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/polly/2016-06-10/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/polly/2016-06-10/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/rds/2014-10-31/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/rds/2014-10-31/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/redshift/2012-12-01/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/redshift/2012-12-01/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/redshift/2012-12-01/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/redshift/2012-12-01/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/rekognition/2016-06-27/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/rekognition/2016-06-27/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/route53domains/2014-05-15/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/route53domains/2014-05-15/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/route53domains/2014-05-15/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/route53domains/2014-05-15/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/runtime.lex/2016-11-28/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/runtime.lex/2016-11-28/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/s3/2006-03-01/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/s3/2006-03-01/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/snowball/2016-06-30/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/snowball/2016-06-30/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/snowball/2016-06-30/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/snowball/2016-06-30/paginators-1.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/sqs/2012-11-05/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/sqs/2012-11-05/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/ssm/2014-11-06/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/ssm/2014-11-06/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/storagegateway/2013-06-30/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/storagegateway/2013-06-30/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/sts/2011-06-15/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/sts/2011-06-15/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/workdocs/2016-05-01/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/workdocs/2016-05-01/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/workspaces/2015-04-08/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/workspaces/2015-04-08/api-2.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/workspaces/2015-04-08/paginators-1.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/workspaces/2015-04-08/paginators-1.json.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,52 +125,12 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ReportsApiMapper.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Mappers/ReportsApiMapper.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="79" column="7" lean-forward="false" selection-start-line="79" selection-start-column="7" selection-end-line="79" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="json_api_spec.js" pinned="false" current-in-tab="false">
+    <leaf>
+      <file leaf-file-name="json_api_spec.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/json_api_spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
+            <state relative-caret-position="1360">
               <caret line="68" column="6" lean-forward="false" selection-start-line="68" selection-start-column="6" selection-end-line="68" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="S3Mapper.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Mappers/S3Mapper.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="34" column="83" lean-forward="false" selection-start-line="34" selection-start-column="83" selection-end-line="34" selection-end-column="83" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="639">
-              <caret line="39" column="34" lean-forward="false" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportsApiController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReportsApiController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="81" column="43" lean-forward="false" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -160,7 +225,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="42" />
     <option name="y" value="-11" />
-    <option name="width" value="1591" />
+    <option name="width" value="1543" />
     <option name="height" value="892" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -200,7 +265,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -347,6 +411,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -493,28 +558,27 @@
       <workItem from="1490635139340" duration="7315000" />
       <workItem from="1490818301515" duration="6997000" />
       <workItem from="1491012124702" duration="942000" />
-      <workItem from="1491791649137" duration="3656000" />
+      <workItem from="1491791649137" duration="4127000" />
+      <workItem from="1497496900682" duration="94000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121883000" />
+    <option name="totallyTimeSpent" value="122448000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="42" y="-11" width="1591" height="892" extended-state="6" />
+    <frame x="42" y="-11" width="1543" height="892" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.210902" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43229166" sideWeight="0.5019157" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44471744" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20453115" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19334187" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23218673" sideWeight="0.49808428" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44471744" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -522,6 +586,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19334187" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23218673" sideWeight="0.49808428" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -708,13 +774,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dumpTablesToJSON.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="136" lean-forward="false" selection-start-line="17" selection-start-column="136" selection-end-line="17" selection-end-column="136" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dumpTablesToJSON.sh" />
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -753,18 +813,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/json_api_spec.js">
+    <entry file="file://$PROJECT_DIR$/app/Http/Mappers/ReportsApiMapper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="68" column="6" lean-forward="false" selection-start-line="68" selection-start-column="6" selection-end-line="68" selection-end-column="6" />
+        <state relative-caret-position="200">
+          <caret line="76" column="24" lean-forward="true" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Mappers/ReportsApiMapper.php">
+    <entry file="file://$PROJECT_DIR$/tests/json_api_spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="79" column="7" lean-forward="false" selection-start-line="79" selection-start-column="7" selection-end-line="79" selection-end-column="7" />
+        <state relative-caret-position="1360">
+          <caret line="68" column="6" lean-forward="false" selection-start-line="68" selection-start-column="6" selection-end-line="68" selection-end-column="6" />
           <folding />
         </state>
       </provider>
