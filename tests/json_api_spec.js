@@ -1,15 +1,18 @@
 'use strict';
 
 const frisby = require('frisby');
-// let baseURL = 'http://mongodb.local';
-const baseURL = 'http://lumen.moore-database.com';
+const Joi = frisby.Joi;
+const baseURL = 'http://lumen.local';
+// const baseURL = 'http://lumen.moore-database.com';
+
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 
 it('Should clear cache', function() {
     frisby.get(baseURL + '/api/reports/clearCache')
     .expect('status', 200)
     .expect('header', 'Content-Type', 'application/json')
     .expect('jsonTypes','data', {
-        message: String
+        message: Joi.string()
     })
     .expect('json', 'data', {
         message: 'Cache flushed.'

@@ -101,7 +101,7 @@ return [
 			'username' => env('MONGO_USERNAME',''),
 			'password' => env('MONGO_PASSWORD',''),
 			'options'  => [
-				'database' => 'birding' // sets the authentication database required by mongo 3
+				'database' => 'admin' // sets the authentication database required by mongo 3
 			]
 		],
 
