@@ -23,12 +23,12 @@ it('Should access Species By Month JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            monthNumber: Joi.number().required(),
+            monthNumber: Joi.number().integer().min(1).max(12).required(),
             monthName: Joi.string().required(),
             monthLetter: Joi.string().required(),
-            tripCount: Joi.number().required(),
-            speciesCount: Joi.number().required(),
-            sightingCount: Joi.number().required()
+            tripCount: Joi.number().integer().required(),
+            speciesCount: Joi.number().integer().required(),
+            sightingCount: Joi.number().integer().required()
         })
         .done(done);
 });
@@ -38,10 +38,10 @@ it('Species By Year JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            yearNumber: Joi.number().required(),
-            tripCount: Joi.number().required(),
-            speciesCount: Joi.number().required(),
-            sightingCount: Joi.number().required()
+            yearNumber: Joi.number().integer().required(),
+            tripCount: Joi.number().integer().required(),
+            speciesCount: Joi.number().integer().required(),
+            sightingCount: Joi.number().integer().required()
         })
         .done(done);
 });
@@ -51,10 +51,10 @@ it('Species YTD JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            yearNumber: Joi.number().required(),
-            tripCount: Joi.number().required(),
-            speciesCount: Joi.number().required(),
-            sightingCount: Joi.number().required(),
+            yearNumber: Joi.number().integer().required(),
+            tripCount: Joi.number().integer().required(),
+            speciesCount: Joi.number().integer().required(),
+            sightingCount: Joi.number().integer().required(),
             monthDay: Joi.string().required()
         })
         .done(done);
@@ -80,13 +80,14 @@ it('Species For Month JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required(),
+            id: Joi.number().integer().required(),
             order_name: Joi.string().required(),
             order_notes: Joi.string().required(),
             common_name: Joi.string().required(),
             scientific_name: Joi.string().required(),
             family: Joi.string().required(),
-            sightings: Joi.number().required(),
+            subfamily: Joi.string().allow(''),
+            sightings: Joi.number().integer().required(),
             last_seen: Joi.string().required(),
             monthName: Joi.string().required()
         })
@@ -113,13 +114,14 @@ it('Species For Year JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required(),
+            id: Joi.number().integer().required(),
             order_name: Joi.string().required(),
             order_notes: Joi.string().required(),
             common_name: Joi.string().required(),
             scientific_name: Joi.string().required(),
             family: Joi.string().required(),
-            sightings: Joi.number().required(),
+            subfamily: Joi.string().allow(''),
+            sightings: Joi.number().integer().required(),
             first_seen: Joi.string().required(),
             last_seen: Joi.string().required()
         })
@@ -146,13 +148,14 @@ it('Species For Order JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required(),
+            id: Joi.number().integer().required(),
             order_name: Joi.string().required(),
             order_notes: Joi.string().required(),
             common_name: Joi.string().required(),
             scientific_name: Joi.string().required(),
             family: Joi.string().required(),
-            sightings: Joi.number().required(),
+            subfamily: Joi.string().allow(''),
+            sightings: Joi.number().integer().required(),
             last_seen: Joi.string().required()
         })
         .done(done);
@@ -163,12 +166,12 @@ it('Species By Order JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required(),
+            id: Joi.number().integer().required(),
             order_name: Joi.string().required(),
             order_notes: Joi.string().required(),
-            order_species_count_all: Joi.number().required(),
-            speciesCount: Joi.number().required(),
-            sightingCount: Joi.number().required()
+            order_species_count_all: Joi.number().integer().required(),
+            speciesCount: Joi.number().integer().required(),
+            sightingCount: Joi.number().integer().required()
         })
         .done(done);
 });
@@ -178,19 +181,19 @@ it('Species By Location JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required(),
+            id: Joi.number().integer().required(),
             country_code: Joi.string().required(),
             state_code: Joi.string().required(),
             county_name: Joi.string().required(),
             location_name: Joi.string().required(),
             latitude: Joi.number().required(),
             longitude: Joi.number().required(),
-            ecs_subsection_id: Joi.number().required(),
-            species_count: Joi.number().required(),
-            sightingCount: Joi.number().required(),
-            trip_count: Joi.number().required(),
-            trips: Joi.number().required(), // duplicate field
-            subsection_id: Joi.number().required(), // duplicate field
+            ecs_subsection_id: Joi.number().integer().required(),
+            species_count: Joi.number().integer().required(),
+            sightingCount: Joi.number().integer().required(),
+            trip_count: Joi.number().integer().required(),
+            trips: Joi.number().integer().required(), // duplicate field
+            subsection_id: Joi.number().integer().required(), // duplicate field
             subsection_name: Joi.string().required(),
             subsection_url: Joi.string().required(),
             section_name: Joi.string().required(),
@@ -207,8 +210,8 @@ it('Species By County JSON endpoint', function (done) {
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
             countyName: Joi.string().required(),
-            tripCount: Joi.number().required(),
-            speciesCount: Joi.number().required()
+            tripCount: Joi.number().integer().required(),
+            speciesCount: Joi.number().integer().required()
         })
         .done(done);
 });
@@ -218,13 +221,14 @@ it('All Species JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required(),
+            id: Joi.number().integer().required(),
             order_name: Joi.string().required(),
             order_notes: Joi.string().required(),
             common_name: Joi.string().required(),
             scientific_name: Joi.string().required(),
             family: Joi.string().required(),
-            sightings: Joi.number().required(),
+            subfamily: Joi.string().allow(''),
+            sightings: Joi.number().integer().required(),
             last_seen: Joi.string().required()
         })
         .done(done);
@@ -245,9 +249,9 @@ it('List Orders All JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number(),
+            id: Joi.number().integer().required(),
             order_name: Joi.string().required(),
-            sortkey: Joi.number().required()
+            sortkey: Joi.number().integer().required()
         })
         .done(done);
 });
@@ -262,7 +266,9 @@ it('Search All using string and all orders', function (done) {
             common_name: Joi.string().required(),
             scientific_name: Joi.string().required(),
             family: Joi.string().required(),
-            sightings: Joi.number().required()
+            subfamily: Joi.string().allow(''),
+            sightings: Joi.number().integer().required(),
+            last_seen: Joi.string().allow(null)
         })
         .done(done);
 });
@@ -272,12 +278,14 @@ it('Search All using string and order', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required(),
+            id: Joi.number().integer().required(),
             order_name: Joi.string().required(),
             common_name: Joi.string().required(),
             scientific_name: Joi.string().required(),
             family: Joi.string().required(),
-            sightings: Joi.number().required()
+            subfamily: Joi.string().allow(''),
+            sightings: Joi.number().integer().required(),
+            last_seen: Joi.string().allow(null)
         })
         .done(done);
 });
@@ -287,12 +295,14 @@ it('Search All using URL-encoded space and all orders', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required(),
+            id: Joi.number().integer().required(),
             order_name: Joi.string().required(),
             common_name: Joi.string().required(),
             scientific_name: Joi.string().required(),
             family: Joi.string().required(),
-            sightings: Joi.number().required()
+            subfamily: Joi.string().allow(''),
+            sightings: Joi.number().integer().required(),
+            last_seen: Joi.string().allow(null)
         })
         .done(done);
 });
@@ -302,12 +312,14 @@ it('Search All using space and all orders', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required(),
+            id: Joi.number().integer().required(),
             order_name: Joi.string().required(),
             common_name: Joi.string().required(),
             scientific_name: Joi.string().required(),
             family: Joi.string().required(),
-            sightings: Joi.number().required()
+            subfamily: Joi.string().allow(''),
+            sightings: Joi.number().integer().required(),
+            last_seen: Joi.string().allow(null)
         })
         .done(done);
 });
@@ -347,13 +359,14 @@ it('Species Detail JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required(),
+            id: Joi.number().integer().required(),
             order_name: Joi.string().required(),
             order_notes: Joi.string().required(),
             common_name: Joi.string().required(),
             scientific_name: Joi.string().required(),
             family: Joi.string().required(),
-            sightings: Joi.number().required(),
+            subfamily: Joi.string().allow(''),
+            sightings: Joi.number().integer().required(),
             last_seen: Joi.string().required(),
             earliestSighting: Joi.string().required(),
             latestSighting: Joi.string().required()
@@ -382,9 +395,9 @@ it('Months For Species JSON endpoint', function (done) {
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
             common_name: Joi.string().required(),
-            monthNumber: Joi.number().required(),
+            monthNumber: Joi.number().integer().min(1).max(12).required(),
             monthName: Joi.string().required(),
-            sightingCount: Joi.number().required()
+            sightingCount: Joi.number().integer().required()
         })
         .done(done);
 });
@@ -394,7 +407,7 @@ it('List Order Ids JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            order_id: Joi.number().required()
+            order_id: Joi.number().integer().required()
         })
         .done(done);
 });
@@ -414,7 +427,7 @@ it('List Location Ids JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required()
+            id: Joi.number().integer().required()
         })
         .done(done);
 });
@@ -439,12 +452,13 @@ it('Species For Location JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required(),
+            id: Joi.number().integer().required(),
             order_name: Joi.string().required(),
             common_name: Joi.string().required(),
             scientific_name: Joi.string().required(),
             family: Joi.string().required(),
-            sightings: Joi.number().required(),
+            subfamily: Joi.string().allow(''),
+            sightings: Joi.number().integer().required(),
             last_seen: Joi.string().required()
         })
         .done(done);
@@ -470,7 +484,7 @@ it('Location detail JSON endpoint', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            id: Joi.number().required(),
+            id: Joi.number().integer().required(),
             country_code: Joi.string().required(),
             state_code: Joi.string().required(),
             location_name: Joi.string().required(),
@@ -478,11 +492,11 @@ it('Location detail JSON endpoint', function (done) {
             notes: Joi.string().required(),
             latitude: Joi.number().required(),
             longitude: Joi.number().required(),
-            ecs_subsection_id: Joi.number().required(),
+            ecs_subsection_id: Joi.number().integer().required(),
             ecs_subsection_name: Joi.string().required(),
             ecs_subsection_url: Joi.string().required(),
-            trip_count: Joi.number().required(),
-            species_count: Joi.number().required()
+            trip_count: Joi.number().integer().required(),
+            species_count: Joi.number().integer().required()
         })
         .done(done);
 });
@@ -492,12 +506,12 @@ it('Monthly temperatures', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            monthNumber: Joi.number().required(),
+            monthNumber: Joi.number().integer().min(1).max(12).required(),
             avg_low_temp: Joi.number().required(),
             record_low_temp: Joi.number().required(),
             avg_high_temp: Joi.number().required(),
             record_high_temp: Joi.number().required(),
-            days_with_frost: Joi.number().required()
+            days_with_frost: Joi.number().integer().required()
         })
         .done(done);
 });
@@ -507,8 +521,8 @@ it('Ducks and Warblers', function (done) {
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json')
         .expect('jsonTypes', 'data.*', {
-            monthNumber: Joi.number().required(),
-            speciesCount: Joi.number().required(),
+            monthNumber: Joi.number().integer().min(1).max(12).required(),
+            speciesCount: Joi.number().integer().required(),
             family: Joi.string().required(),
             monthLetter: Joi.string().required()
         })
