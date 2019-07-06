@@ -15,5 +15,9 @@
     "frisby": "^2.0.15",
     "jasmine": "^3.1.0"
   },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost"
+  },
   "dependencies": {}
 }
